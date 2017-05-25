@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 import { AuthService } from '../services/auth.service';
-import { ToastComponent } from '../shared/toast/toast.component';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private auth: AuthService,
               private formBuilder: FormBuilder,
-              private router: Router,
-              public toast: ToastComponent) { }
+              private router: Router) { }
 
   ngOnInit() {
     if (this.auth.loggedIn) {
@@ -44,7 +42,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth.login(this.loginForm.value).subscribe(
       res => this.router.navigate(['/']),
-      error => this.toast.setMessage('invalid email or password!', 'danger')
+      error => console.log('invalid email or password!', 'danger')
     );
   }
 

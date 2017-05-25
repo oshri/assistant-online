@@ -1,47 +1,45 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule, MdIconRegistry } from '@angular/material';
 
 import { RoutingModule } from './routing.module';
-import { SharedModule } from './shared/shared.module';
-import { CatService } from './services/cat.service';
+import { API_URL } from './app.tokens';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 import { AppComponent } from './app.component';
-import { CatsComponent } from './cats/cats.component';
-import { AboutComponent } from './about/about.component';
-import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
-import { AccountComponent } from './account/account.component';
-import { AdminComponent } from './admin/admin.component';
+import 'hammerjs';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CatsComponent,
-    AboutComponent,
-    RegisterComponent,
-    LoginComponent,
-    LogoutComponent,
-    AccountComponent,
-    AdminComponent
+    LoginComponent
   ],
   imports: [
-    RoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    HttpModule,
+    RoutingModule,
+    MaterialModule
   ],
   providers: [
     AuthService,
     AuthGuardLogin,
     AuthGuardAdmin,
-    CatService,
-    UserService
+    UserService,
+    MdIconRegistry,
+    {provide: API_URL, useValue: '/api/'},
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [],
   bootstrap: [AppComponent]
 })
 

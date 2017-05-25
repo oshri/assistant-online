@@ -1,10 +1,10 @@
-import { Angular2FullStackPage } from './app.po';
+import { AssistantOnlinePage } from './app.po';
 
-describe('angular2-full-stack App', () => {
-  let page: Angular2FullStackPage;
+describe('Assistant Online App', () => {
+  let page: AssistantOnlinePage;
 
   beforeEach(() => {
-    page = new Angular2FullStackPage();
+    page = new AssistantOnlinePage();
   });
 
   it('should display the navbar correctly', () => {

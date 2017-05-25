@@ -1,10 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@include mat-core();
 
-body {
-  margin-top: 15px;
-  margin-bottom: 10px;
+$assOnline-app-primary: mat-palette($mat-blue-grey);
+$assOnline-app-accent:  mat-palette($mat-lime, A200, A100, A400);
+$assOnline-app-warn:    mat-palette($mat-red);
+
+
+$assOnline-app-theme: mat-light-theme($assOnline-app-primary, $assOnline-app-accent, $assOnline-app-warn);
+@include angular-material-theme($assOnline-app-theme);
+
+body{
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-.input-group {
-  margin-bottom: 15px;
+
+.space-form-item{
+  margin-bottom: 30px;
+}
+
+.container{
+  padding-top: 40px;
 }
