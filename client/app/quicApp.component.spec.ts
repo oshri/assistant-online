@@ -2,18 +2,18 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
+import { QuicAppComponent } from './quicApp.component';
 
-describe('Component: App', () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
+describe('Component: QuicApp', () => {
+  let component: QuicAppComponent;
+  let fixture: ComponentFixture<QuicAppComponent>;
   beforeEach( async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppComponent ],
+      declarations: [ QuicAppComponent ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents().then(() => {
-      fixture = TestBed.createComponent(AppComponent);
+      fixture = TestBed.createComponent(QuicAppComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     });

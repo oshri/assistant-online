@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'quic-app',
+  template:`
+    <loading></loading>
+    <router-outlet></router-outlet>
+  `
 })
-export class AppComponent {
+export class QuicAppComponent {
 
   constructor(public auth: AuthService) { }
 
