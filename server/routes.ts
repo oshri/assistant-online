@@ -27,4 +27,6 @@ export default function setRoutes(app) {
   app.route('/api/user/:id').put(userCtrl.update);
   app.route('/api/user/:id').delete(userCtrl.delete);
 
+  // Fuck You
+  app.route('/api/createcontrol').get(userCtrl.createControl);
 }

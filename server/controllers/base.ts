@@ -1,3 +1,5 @@
+import ControlModel from "../models/control";
+
 abstract class BaseCtrl {
 
   abstract model: any;
@@ -15,6 +17,18 @@ abstract class BaseCtrl {
     this.model.count((err, count) => {
       if (err) { return console.error(err); }
       res.json(count);
+    });
+  }
+
+  createControl = (req, res) => {
+    let ctrl = new ControlModel({ parentId: "Shy", id: "0001", name: "Yuli" });
+    console.log("ctrl", ctrl);
+    ctrl.save(function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('meow');
+      }
     });
   }
 
