@@ -1,0 +1,18 @@
+.user{
+    display: inline-block;
+    padding: 12px;
+    vertical-align: middle;
+
+    .user-avatar{
+        
+        img{
+            border-radius: 50%;
+            width: 30px;
+            border: 1px solid #d6d6d6;
+            padding: 1px;
+            margin: 4px;
+        }
+    }
+
+    
+}
