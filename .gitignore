@@ -5,7 +5,7 @@
 # compiled output
 /tmp
 /out-tsc
-
+/out/*
 # dependencies
 /node_modules
 
@@ -14,7 +14,6 @@
 .project
 .classpath
 .c9/
-*.launch
 .settings/
 *.sublime-workspace
 
