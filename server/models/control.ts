@@ -3,6 +3,6 @@ import { Control } from "../../common/pojo/control";
 
 const controlSchema = new mongoose.Schema(Control);
 
-const ControlModel = mongoose.model('Cat', controlSchema);
+const ControlModel = mongoose.model('Control', controlSchema);
 
 export default ControlModel;

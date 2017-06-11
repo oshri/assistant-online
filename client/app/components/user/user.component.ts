@@ -18,7 +18,7 @@ export class UserComponent {
   user: any
   
   constructor(
-    private auth: AuthService)
+    public auth: AuthService)
   {
     this.user = JSON.parse(localStorage.getItem('profile'));
   }
