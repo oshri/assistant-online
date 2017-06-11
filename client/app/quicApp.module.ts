@@ -24,12 +24,15 @@ import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 // Components
 import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
+import { AppHeaderComponent } from './components/appHeader/appHeader.component';
+
 
 @NgModule({
   declarations: [
     QuicAppComponent,
     HomeComponent,
-    UserComponent
+    UserComponent,
+    AppHeaderComponent
   ],
   imports: [
     BrowserModule,

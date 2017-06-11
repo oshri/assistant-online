@@ -5,6 +5,7 @@ import { AuthService } from './services/auth.service';
   selector: 'quic-app',
   template:`
     <loading></loading>
+    <app-header [authenticated]="auth.isAuthenticated()"></app-header>
     <router-outlet></router-outlet>
   `
 })

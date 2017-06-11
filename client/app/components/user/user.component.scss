@@ -1,16 +1,16 @@
 .user{
-    display: inline-block;
-    padding: 12px;
-    vertical-align: middle;
+    color: white;
+    font-size: 12px;
 
     .user-avatar{
-        
+        padding: 5px;
+
         img{
             border-radius: 50%;
-            width: 30px;
+            width: 25px;
+            height: 25px;
             border: 1px solid #d6d6d6;
             padding: 1px;
-            margin: 4px;
         }
     }
 
