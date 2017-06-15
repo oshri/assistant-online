@@ -11,10 +11,10 @@ import { Subscription } from 'rxjs/Subscription';
     animations: [
         trigger('myAwesomeAnimation', [
             state('small', style({
-                backgroundColor: 'white'
+                backgroundColor: '#F8F8F8'
             })),
             state('large', style({
-                backgroundColor: '#434343'
+                backgroundColor: '#1d1c1a'
             })),
             transition('small <=> large', animate('250ms ease-in'))
         ])

@@ -1,3 +1,4 @@
+$space: 8px;
 :host(app-header){
     .app-header{
         min-height: 38px;
@@ -5,7 +6,12 @@
         .app-navigation{
 
             .quic-app-icon{
-                margin-left: 4px;
+                margin-left: $space;
+                span{
+                    padding-left: 8px;
+                    color: white;
+                    padding-left: $space;
+                }
             }
 
             .common-links{
@@ -14,12 +20,24 @@
 
             .login-btn{
                 line-height: 30px;
-                margin-right: 4px;
+                margin-right: $space;
             }
         }
 
         .app-state{
             height: 100px;
+                box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 
+                            0 6px 10px 0 rgba(0,0,0,.14),
+                            0 1px 18px 0 rgba(0,0,0,.12);
+
+            .state-name{
+                margin-left: $space;
+
+                h1{
+                    font-weight: 100;
+                    color: white;                    
+                }
+            }
         }
     }
 }

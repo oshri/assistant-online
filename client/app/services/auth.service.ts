@@ -21,13 +21,15 @@ export class AuthService {
     private store: Store)
   {
 
-    this.loading.setValue(false);
+    
     this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
     this.store.set('loggedinStatus', this.isAuthenticated());
+    this.loading.setValue(true);
 
     this.lock.on("authenticated", (authResult) => {
       localStorage.setItem('id_token', authResult.idToken);
       this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
+        this.loading.setValue(false);
         if(error){
           this.showNotify('Errors', 'GETUSER');
           throw new Error(error);
@@ -40,6 +42,10 @@ export class AuthService {
   
       });
 
+    });
+
+    this.lock.on('hide', () => {
+      this.loading.setValue(false);
     });
   }
 
@@ -71,6 +77,7 @@ export class AuthService {
 
   login() :void{
     this.lock.show();
+    this.loading.setValue(true);
   }
 
   logout() :void{

@@ -1,6 +1,8 @@
-import { Store } from './services/store/store';
 import { Component } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MdIconRegistry } from '@angular/material';
 import { AuthService } from './services/auth.service';
+import { Store } from './services/store/store';
 
 @Component({
   selector: 'quic-app',
@@ -15,7 +17,14 @@ export class QuicAppComponent {
 
   constructor(
     public auth: AuthService,
-    private store: Store) { 
+    private store: Store,
+    private iconRegistry: MdIconRegistry,
+    private sanitizer: DomSanitizer
+  ) { 
+
+    this.iconRegistry.addSvgIcon(
+        'quicApp',
+        this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/quicApp-icon.svg'));
 
   }
 
