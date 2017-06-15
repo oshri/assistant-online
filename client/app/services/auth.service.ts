@@ -1,3 +1,4 @@
+import { Store } from './store/store';
 import { Injectable } from '@angular/core';
 import { AUTH_CONFIG } from './auth0-variables';
 import { Router } from '@angular/router';
@@ -16,19 +17,20 @@ export class AuthService {
   constructor(
     private loading: LoadingService,
     private snackbar: MdSnackBar,
-    public router: Router)
+    public router: Router,
+    private store: Store)
   {
 
     this.loading.setValue(false);
-    
     this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
+    this.store.set('loggedinStatus', this.isAuthenticated());
 
     this.lock.on("authenticated", (authResult) => {
       localStorage.setItem('id_token', authResult.idToken);
       this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
         if(error){
           this.showNotify('Errors', 'GETUSER');
-          return;
+          throw new Error(error);
         }
 
         this.setSession(authResult);
@@ -46,6 +48,15 @@ export class AuthService {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+    this.store.set('loggedinStatus', this.isAuthenticated());
+  }
+
+  private dropSession(): void {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
+    localStorage.removeItem('profile');
+    this.store.set('loggedinStatus', this.isAuthenticated());
   }
 
 
@@ -63,9 +74,7 @@ export class AuthService {
   }
 
   logout() :void{
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
+    this.dropSession();
     this.router.navigate(['/']);
   }
 

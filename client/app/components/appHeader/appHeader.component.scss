@@ -1,6 +1,25 @@
 :host(app-header){
     .app-header{
-        background-color: #434343;
-        height: 38px;
+        min-height: 38px;
+
+        .app-navigation{
+
+            .quic-app-icon{
+                margin-left: 4px;
+            }
+
+            .common-links{
+
+            }
+
+            .login-btn{
+                line-height: 30px;
+                margin-right: 4px;
+            }
+        }
+
+        .app-state{
+            height: 100px;
+        }
     }
 }

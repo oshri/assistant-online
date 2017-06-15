@@ -1,18 +1,37 @@
 <div    class="app-header" 
-        fxLayout="row"
-        fxLayoutAlign="space-around center">
-        
-    <div class="quic-app-icon" fxFlex="83px"></div>
-    
-    <div class="app-navigation" fxFlex="70%"></div>
+        fxLayout="column"
+        fxLayoutAlign="space-around none"
+        [@myAwesomeAnimation]="authState">
 
-    <user   *ngIf="authenticated"
-            [authenticated]="auth.isAuthenticated()" fxFlex="190px"></user>
-    <button *ngIf="!auth.isAuthenticated()"
-          md-button
-          fxFlex
-          (click)="auth.login()">
-            Log In
-    </button>
+    <div    class="app-navigation" 
+            fxLayout="row"
+            fxLayoutAlign="space-between center">
+            
+            <div class="quic-app-icon" fxFlex="83px"></div>
+
+            <div class="common-links" fxFlex="70%"></div>
+
+            <user   *ngIf="authenticated"
+                    [authenticated]="authenticated" fxFlex="190px"></user>
+            
+            <button class="login-btn"
+                    *ngIf="!authenticated"
+                    md-button
+                    fxFlex="80px"
+                    (click)="auth.login()">
+                Log In
+            </button>
+    </div>
+    <div    class="app-state"
+            fxLayout="row"
+            fxLayoutAlign="space-around center"
+            *ngIf="authenticated">
+    
+            <div>
+                Welcocme
+            </div>
+
+    </div>
+
 </div>
 

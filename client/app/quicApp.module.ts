@@ -11,10 +11,11 @@ import 'hammerjs';
 // Modules
 import { RoutingModule } from './routing.module';
 import { QuicAppComponent } from './quicApp.component';
-import {  LoadingModule, LoadingService } from './modules/loading/loading.module';
+import { LoadingModule, LoadingService } from './modules/loading/loading.module';
 
 
 // Services
+import { Store } from './services/store/store';
 import { API_URL } from './app.tokens';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
@@ -46,6 +47,7 @@ import { AppHeaderComponent } from './components/appHeader/appHeader.component';
     LoadingModule.forRoot()
   ],
   providers: [
+    Store,
     AuthService,
     AuthGuardLogin,
     AuthGuardAdmin,

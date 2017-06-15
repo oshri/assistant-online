@@ -1,3 +1,4 @@
+import { Store } from './services/store/store';
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
 
@@ -5,12 +6,17 @@ import { AuthService } from './services/auth.service';
   selector: 'quic-app',
   template:`
     <loading></loading>
-    <app-header [authenticated]="auth.isAuthenticated()"></app-header>
+    <app-header [authenticated]="loggedinStatus$ | async"></app-header>
     <router-outlet></router-outlet>
   `
 })
 export class QuicAppComponent {
+  loggedinStatus$ = this.store.select<any>('loggedinStatus');
 
-  constructor(public auth: AuthService) { }
+  constructor(
+    public auth: AuthService,
+    private store: Store) { 
+
+  }
 
 }
