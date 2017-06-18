@@ -5,6 +5,10 @@ import {  ChangeDetectionStrategy,
           Output,
           ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { MdDialog, MdDialogRef } from '@angular/material';
+import { UserProfileDialogComponent } from './../userProfileDIalog/userProfileDialog.component';
+
+
 
 @Component({
   selector: 'user',
@@ -18,7 +22,8 @@ export class UserComponent {
   user: any
   
   constructor(
-    public auth: AuthService)
+    public auth: AuthService,
+    public dialog: MdDialog)
   {
     this.user = JSON.parse(localStorage.getItem('profile'));
   }
@@ -29,5 +34,15 @@ export class UserComponent {
 
   get fullName(){
     return this.user.name;
+  }
+
+  openDialog() {
+    let dialogRef = this.dialog.open(UserProfileDialogComponent,{
+          width: '400px',
+          height: '400px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 }

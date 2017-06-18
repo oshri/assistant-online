@@ -1,17 +1,13 @@
-<md-menu #appMenu="mdMenu">
-  <button (click)="auth.logout()" md-menu-item> Logout </button>
-</md-menu>
-
 <div    class="user" 
         *ngIf="authenticated"
         fxLayout="row"
-        fxLayoutAlign="space-between center">
+        fxLayoutAlign="end center">
 
     <div class="user-avatar">
         <img [src]="picture">
     </div>
     <span>{{fullName}}</span>
-    <button md-icon-button [mdMenuTriggerFor]="appMenu">
+    <button md-icon-button (click)="openDialog()">
         <md-icon>keyboard_arrow_down</md-icon>
     </button>
 </div>
