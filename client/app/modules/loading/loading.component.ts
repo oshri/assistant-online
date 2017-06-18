@@ -31,7 +31,7 @@ export class LoadingComponent implements OnInit {
         private sanitizer: DomSanitizer) {
         this.iconRegistry.addSvgIcon(
             'quicApp',
-            this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/quicApp-icon.svg'));
+            this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/quicApp-icon.svg'));
 
     }
 

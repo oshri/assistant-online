@@ -7,9 +7,12 @@ $space: 8px;
 
             .quic-app-icon{
                 margin-left: $space;
+
                 span{
+                    &.white{
+                        color: white;
+                    }
                     padding-left: 8px;
-                    color: white;
                     padding-left: $space;
                 }
             }

@@ -1,7 +1,7 @@
 <div    class="app-header" 
         fxLayout="column"
         fxLayoutAlign="space-around none"
-        [@myAwesomeAnimation]="authState">
+        [@authenticated]="authState">
 
     <div    class="app-navigation" 
             fxLayout="row"
@@ -12,7 +12,7 @@
                         fxLayoutAlign="start none"
                         fxFlex="183px">
                 <md-icon svgIcon="quicApp"></md-icon>
-                <span>quicApp</span>
+                <span [class.white]="authenticated">quicApp</span>
             </div>
 
             <div class="common-links" fxFlex="70%"></div>
@@ -34,7 +34,7 @@
             *ngIf="authenticated">
     
             <div class="state-name" fxFlex="30%">
-               <h1>Welcome</h1>
+               <h1>{{ stateName }}</h1>
             </div>
             <div fxFlex="70%">
                 

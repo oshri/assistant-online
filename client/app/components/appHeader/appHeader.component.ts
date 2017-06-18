@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Store } from './../../services/store/store';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
@@ -9,14 +10,14 @@ import { Subscription } from 'rxjs/Subscription';
     styleUrls: ['appHeader.component.scss'],
     templateUrl: 'appHeader.component.html',
     animations: [
-        trigger('myAwesomeAnimation', [
-            state('small', style({
+        trigger('authenticated', [
+            state('not-authenticated', style({
                 backgroundColor: '#F8F8F8'
             })),
-            state('large', style({
+            state('authenticated', style({
                 backgroundColor: '#1d1c1a'
             })),
-            transition('small <=> large', animate('250ms ease-in'))
+            transition('not-authenticated <=> authenticated', animate('250ms ease-in'))
         ])
     ]
 })
@@ -25,34 +26,44 @@ export class AppHeaderComponent implements OnInit,OnDestroy {
 
     headerState$ = this.store.select('loggedinStatus');
     headerSubscription: Subscription;
+    routerEvents: Subscription;
 
     @Input()
     authenticated: boolean;
 
-    public authState: string = 'small';
+    authState: string = 'not-authenticated';
+    _stateName: string;
+
 
     constructor(
         public auth: AuthService,
-        private store: Store)
+        private store: Store,
+        private router: Router)
     {
         
     }
 
     ngOnInit(){
-        // this.authState = this.updateHeaderState(this.auth.isAuthenticated());
-        // debugger
-
         this.headerSubscription = this.headerState$.subscribe((state: boolean) => {
-            this.authState = this.updateHeaderState(state);
+            this.authState = this.updateHeaderState(state);            
+        });
+
+        this.routerEvents = this.router.events.subscribe((state: any) => {
+            this._stateName = state.url.split('/')[1].toUpperCase();
         });
     }
 
     ngOnDestroy(){
-        this.headerSubscription.unsubscribe()
+        this.headerSubscription.unsubscribe();
+        this.routerEvents.unsubscribe();
+    }
+
+    get stateName(){
+        return this._stateName;
     }
 
     updateHeaderState(state: boolean) :string{
-        return state ? 'large' : 'small';
+        return state ? 'authenticated' : 'not-authenticated';
     }
 
 }

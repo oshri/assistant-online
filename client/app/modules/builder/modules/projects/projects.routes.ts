@@ -5,7 +5,6 @@ const PROJECTS_ROUTES: Routes = [
     {
         path: '',
         component: ProjectsComponent,
-        pathMatch: 'prefix',
         children: []
     }
 ];
