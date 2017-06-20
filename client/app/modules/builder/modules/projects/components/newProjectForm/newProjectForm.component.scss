@@ -1,0 +1,40 @@
+// Import theming functions
+@import '~@angular/material/theming';
+// Import your custom theme
+@import '../../../../../../../styles.scss';
+
+:host(new-project-form){
+    $right: 28px;
+    $top: 116px;
+
+    .add-btn{
+        position: absolute;
+        right: $right;
+        top: $top;
+    }
+
+    .animate-circle{
+
+        &.big{
+            transform: scale(50);
+            right: 100px;
+        }
+
+        position: absolute;
+        right: 28px;
+        top: 116px;
+        box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+        min-width: 0;
+        border-radius: 50%;
+        width: 56px;
+        height: 56px;
+        padding: 0;
+        flex-shrink: 0;
+        background-color: mat-color($assOnline-app-accent);
+        transition: .4s,transform .25s cubic-bezier(0.33,1.6,0.66,1),-webkit-transform .25s cubic-bezier(0.33,1.6,0.66,1);
+    }
+
+    .new-project-form{
+
+    }
+}

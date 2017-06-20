@@ -32,7 +32,7 @@ export class AppHeaderComponent implements OnInit,OnDestroy {
     authenticated: boolean;
 
     authState: string = 'not-authenticated';
-    _stateName: string;
+    _stateName: string = '';
 
 
     constructor(
@@ -49,7 +49,7 @@ export class AppHeaderComponent implements OnInit,OnDestroy {
         });
 
         this.routerEvents = this.router.events.subscribe((state: any) => {
-            this._stateName = state.url.split('/')[1].toUpperCase();
+            this._stateName = state.url;
         });
     }
 

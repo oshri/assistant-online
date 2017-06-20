@@ -7,7 +7,8 @@ import {  MaterialModule,
           MdIconRegistry,
           MdMenuModule,
           MdDialogModule,
-          MdIconModule } from '@angular/material';
+          MdIconModule,
+          MdButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
 
@@ -53,6 +54,7 @@ import { UserProfileDialogComponent } from './components/userProfileDIalog/userP
     FlexLayoutModule,
     MdDialogModule,
     MdIconModule,
+    MdButtonModule,
     LoadingModule.forRoot()
   ],
   providers: [
