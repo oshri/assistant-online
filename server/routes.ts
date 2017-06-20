@@ -29,4 +29,8 @@ export default function setRoutes(app) {
 
   // Fuck You
   app.route('/api/createcontrol').get(userCtrl.createControl);
+  app.route('/api/timesheet').post(function(req, res){
+    console.log("User", req.user);
+    res.status(201).send({message:"This is the POST /timesheet endpoint"});
+  });
 }
