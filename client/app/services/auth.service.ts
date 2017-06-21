@@ -29,6 +29,7 @@ export class AuthService {
     this.loading.setValue(true);
 
     this.lock.on("authenticated", (authResult) => {
+      console.log("Auth Result", authResult);
       localStorage.setItem('id_token', authResult.idToken);
       this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
         this.loading.setValue(false);
@@ -73,7 +74,7 @@ export class AuthService {
             method: 'POST',
             headers: new Headers({ 'Authorization': `Bearer ${server_token}` }),
           };
-          this.http.post('http://localhost:4200/api/timesheet', {}, postOptions).
+          this.http.post('http://localhost:4200/api/timesheet', { profile: localStorage.getItem("profile")}, postOptions).
             subscribe(logged => console.log("logged", logged), fail => console.error("failed", fail))
         },
         error => console.error("Error", error));

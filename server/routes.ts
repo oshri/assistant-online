@@ -4,6 +4,8 @@ import CatCtrl from './controllers/cat';
 import UserCtrl from './controllers/user';
 import Cat from './models/cat';
 import User from './models/user';
+var request = require('request');
+
 
 export default function setRoutes(app) {
 
@@ -30,7 +32,22 @@ export default function setRoutes(app) {
   // Fuck You
   app.route('/api/createcontrol').get(userCtrl.createControl);
   app.route('/api/timesheet').post(function(req, res){
-    console.log("User", req.user);
+    // console.log("User", req.user);
+    // console.log("User", req.headers);
+    let auth = req.headers.authorization;
+    console.log("Profile", req.body.profile);
+
+    // // Get user social profile
+    // request.get(
+    //   'https://quicappdev.auth0.com/userinfo', 
+    // { json: { key: 'value' }, headers: {authorization: auth} },
+    // function (error, response, body) {
+    //   console.error("Body", body);
+    //   console.error("Error", error);
+    //   // onsole.error("Response", response);
+    // }
+// );
+
     res.status(201).send({message:"This is the POST /timesheet endpoint"});
   });
 }
