@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MaterialModule,
@@ -25,6 +25,8 @@ import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
+import { HttpService } from './services/http-service';
+
 
 // Components
 import { HomeComponent } from './components/home/home.component';
@@ -63,6 +65,13 @@ import { UserProfileDialogComponent } from './components/userProfileDIalog/userP
     UserService,
     MdIconRegistry,
     {provide: API_URL, useValue: '/api/'},
+    {
+      provide: HttpService,
+      useFactory: (backend: XHRBackend, options: RequestOptions) => {
+        return new HttpService(backend, options);
+      },
+      deps: [XHRBackend, RequestOptions]
+    },
   ],
   entryComponents: [
     UserProfileDialogComponent

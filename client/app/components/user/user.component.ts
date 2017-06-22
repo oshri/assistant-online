@@ -1,12 +1,16 @@
-import {  ChangeDetectionStrategy,
-          Component,
-          EventEmitter,
-          Input,
-          Output,
-          ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { UserProfileDialogComponent } from './../userProfileDIalog/userProfileDialog.component';
+import { HttpService } from '../../services/http-service';
+
 
 
 
@@ -20,29 +24,31 @@ import { UserProfileDialogComponent } from './../userProfileDIalog/userProfileDi
 export class UserComponent {
   @Input() authenticated: boolean;
   user: any
-  
+
   constructor(
     public auth: AuthService,
-    public dialog: MdDialog)
-  {
+    private http: HttpService,
+    public dialog: MdDialog) {
     this.user = JSON.parse(localStorage.getItem('profile'));
   }
 
-  get picture(){
+  get picture() {
     return this.user.picture || '';
   }
 
-  get fullName(){
+  get fullName() {
     return this.user.name;
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(UserProfileDialogComponent,{
-          width: '400px',
-          height: '400px'
+    let dialogRef = this.dialog.open(UserProfileDialogComponent, {
+      width: '400px',
+      height: '400px'
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      console.log('after closed', result);
+      this.http.post(`http://localhost:4200/api/timesheet`, {bang: 5}).
+        subscribe(logged => console.log("logged", logged), fail => console.error("failed", fail));
     });
-  }
+  };
 }
