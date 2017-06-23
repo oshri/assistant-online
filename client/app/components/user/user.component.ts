@@ -8,11 +8,9 @@ import {
 } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { MdDialog, MdDialogRef } from '@angular/material';
+import { Http } from '@angular/http';
+
 import { UserProfileDialogComponent } from './../userProfileDIalog/userProfileDialog.component';
-import { HttpService } from '../../services/http-service';
-
-
-
 
 @Component({
   selector: 'user',
@@ -27,7 +25,7 @@ export class UserComponent {
 
   constructor(
     public auth: AuthService,
-    private http: HttpService,
+    private http: Http,
     public dialog: MdDialog) {
     this.user = JSON.parse(localStorage.getItem('profile'));
   }

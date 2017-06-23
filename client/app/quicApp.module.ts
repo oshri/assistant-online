@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
+import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MaterialModule,
@@ -25,8 +25,6 @@ import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
-import { HttpService } from './services/http-service';
-
 
 // Components
 import { HomeComponent } from './components/home/home.component';
@@ -34,7 +32,7 @@ import { UserComponent } from './components/user/user.component';
 import { AppHeaderComponent } from './components/appHeader/appHeader.component';
 import { UserProfileDialogComponent } from './components/userProfileDIalog/userProfileDialog.component';
 
-
+import { httpFactory } from "./services/http.factory";
 
 @NgModule({
   declarations: [
@@ -66,12 +64,10 @@ import { UserProfileDialogComponent } from './components/userProfileDIalog/userP
     MdIconRegistry,
     {provide: API_URL, useValue: '/api/'},
     {
-      provide: HttpService,
-      useFactory: (backend: XHRBackend, options: RequestOptions) => {
-        return new HttpService(backend, options);
-      },
-      deps: [XHRBackend, RequestOptions]
-    },
+        provide: Http,
+        useFactory: httpFactory,
+        deps: [XHRBackend, RequestOptions]
+    }
   ],
   entryComponents: [
     UserProfileDialogComponent

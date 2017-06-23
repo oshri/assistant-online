@@ -36,7 +36,7 @@ export default function setRoutes(app) {
     // console.log("User", req.headers);
     let auth = req.headers.authorization;
     console.log("Profile", req.body.profile);
-
+    console.log("Headers", req.headers);
     // // Get user social profile
     // request.get(
     //   'https://quicappdev.auth0.com/userinfo', 

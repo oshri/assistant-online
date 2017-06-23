@@ -40,6 +40,7 @@ export class AuthService {
 
         this.setSession(authResult);
         localStorage.setItem("profile", JSON.stringify(profile));
+        console.log('Setting profile', profile);
         this.userProfile = profile;
         this.showNotify(this.userProfile.name, 'SIGNIN');
 
@@ -72,7 +73,7 @@ export class AuthService {
           var postOptions = {
             url: 'http://localhost:4200/api/timesheet',
             method: 'POST',
-            headers: new Headers({ 'Authorization': `Bearer ${server_token}` }),
+            // headers: new Headers({ 'Authorization': `Bearer ${server_token}` }),
           };
           this.http.post('http://localhost:4200/api/timesheet', { profile: localStorage.getItem("profile")}, postOptions).
             subscribe(logged => console.log("logged", logged), fail => console.error("failed", fail))

@@ -25,7 +25,7 @@ export class HttpService extends Http {
     } else {
     // we have to add the token to the url object
       url.headers.set('Authorization', `Bearer ${token}`);
-      url.getBody().profile = profile;
+      JSON.parse(url.getBody()).profile = profile;
     }
     return super.request(url, options).catch(this.catchAuthError(this));
   }
@@ -36,7 +36,7 @@ export class HttpService extends Http {
       console.log(res);
       if (res.status === 401 || res.status === 403) {
         // if not authenticated
-        console.log(res);
+        console.log('Auth Error', res);
       }
       return Observable.throw(res);
     };
