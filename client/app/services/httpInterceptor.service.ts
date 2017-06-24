@@ -39,7 +39,6 @@ export class HttpInterceptor extends Http {
       if (options) {
         options.headers.append('Authorization', `Bearer ${token}`);
         options.headers.append('user_id', json.user_id);
-        options.headers.append('Joe', 'joe');
       } 
     } else {
         console.log('not adding headers to other requests');
