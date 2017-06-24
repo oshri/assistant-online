@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="31px" height="26px" viewBox="0 0 31 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>quicApp-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="builder" transform="translate(-26.000000, -15.000000)">
+            <g id="quicApp-icon" transform="translate(25.000000, 15.000000)">
+                <g id="Group" transform="translate(19.335944, 0.000000)">
+                    <polygon id="Path-2-Copy-2" fill="#FED305" transform="translate(6.055643, 12.878931) scale(-1, 1) translate(-6.055643, -12.878931) " points="10.1224962 0 -1.13686838e-13 12.6709757 12.1112862 25.7578615 5.84380632 13.3179318"></polygon>
+                    <polygon id="Path-2-Copy-4" fill="#EC6C00" transform="translate(6.055643, 19.238355) scale(-1, 1) translate(-6.055643, -19.238355) " points="-1.13686838e-13 12.6949116 12.1112862 25.7817974 5.84380632 13.3418677"></polygon>
+                    <polygon id="Path-2-Copy-5" fill="#FED305" opacity="0.422441123" transform="translate(8.538949, 14.293836) scale(-1, 1) translate(-8.538949, -14.293836) " points="4.96661209 12.6949116 12.1112862 15.8927603 10.8104184 13.3418677"></polygon>
+                </g>
+                <g id="Group-Copy" transform="translate(7.028367, 13.000000) scale(-1, 1) translate(-7.028367, -13.000000) translate(0.528367, 0.000000)">
+                    <polygon id="Path-2-Copy-2" fill="#FED305" transform="translate(6.055643, 12.878931) scale(-1, 1) translate(-6.055643, -12.878931) " points="10.1224962 0 -1.13686838e-13 12.6709757 12.1112862 25.7578615 5.84380632 13.3179318"></polygon>
+                    <polygon id="Path-2-Copy-4" fill="#EC6C00" transform="translate(6.055643, 19.238355) scale(-1, 1) translate(-6.055643, -19.238355) " points="-1.13686838e-13 12.6949116 12.1112862 25.7817974 5.84380632 13.3418677"></polygon>
+                    <polygon id="Path-2-Copy-5" fill="#FED305" opacity="0.422441123" transform="translate(8.538949, 14.293836) scale(-1, 1) translate(-8.538949, -14.293836) " points="4.96661209 12.6949116 12.1112862 15.8927603 10.8104184 13.3418677"></polygon>
+                </g>
+                <path d="M18.8322257,0.745006551 L15.5136103,25.5984251" id="Path-2" stroke="#FED305" stroke-width="2"></path>
+            </g>
+        </g>
+    </g>
+</svg>

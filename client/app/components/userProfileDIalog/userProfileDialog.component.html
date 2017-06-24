@@ -1,0 +1,21 @@
+<md-dialog-content class="user-profile">
+    <div fxLayout="column" fxLayoutAlign="space-between none" >
+        <div fxLayout="row" fxLayoutAlign="end center" >
+            <button class="close-btn" [md-dialog-close]="true">
+                <div class="close-animation"></div>
+            </button>
+            <!--<button class="close-btn" [md-dialog-close]="true">
+                <md-icon>close</md-icon>
+            </button>-->
+        </div>
+        <div class="user-avatar">
+            <img [src]="picture">
+        </div>
+        <span class="user-name">{{fullName}}</span>
+    </div>
+</md-dialog-content>
+<md-dialog-actions>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <button class="logout-btn" (click)="logout()" md-button>Logout</button>
+    </div>
+</md-dialog-actions>

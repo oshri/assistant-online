@@ -5,7 +5,6 @@ const BUILDER_ROUTES: Routes = [
     {
         path: '',
         component: BuilderComponent,
-        pathMatch: 'prefix',
         children: [
             {
                 path: 'projects',
