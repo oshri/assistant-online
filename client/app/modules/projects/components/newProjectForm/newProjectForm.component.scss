@@ -1,0 +1,139 @@
+// Import theming functions
+@import '~@angular/material/theming';
+// Import your custom theme
+@import '../../../../../styles.scss';
+
+:host(new-project-form){
+    $right: 28px;
+    $top: 116px;
+    $circleHeight: 56px;
+    $circleWidth: 56px;
+    $spaceHeight: 80px;
+    $boxShadow: 0 3px 5px -1px rgba(0,0,0,.2),
+                0 6px 10px 0 rgba(0,0,0,.14),
+                0 1px 18px 0 rgba(0,0,0,.12);
+
+    .add-btn{
+        position: absolute;
+        right: $right;
+        top: $top;
+        box-shadow: $boxShadow;
+
+        &[disabled]{
+            background-color: mat-color($assOnline-app-primary);
+        }
+
+        .mat-progress-spinner{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    .circle-parts{
+        position: fixed;
+        right: $right;
+        top: $top; 
+        height: $spaceHeight;
+        
+        .circle{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            border-radius: 50%;
+            width: $circleWidth;
+            height: $circleHeight;
+            padding: 0;
+            flex-shrink: 0;
+            background-color: mat-color($assOnline-app-accent);
+            box-shadow: $boxShadow;
+        }
+
+        .left{
+            position: relative;
+            width: $circleWidth / 2;
+            height: $spaceHeight;
+            overflow: hidden;
+
+            .circle{
+                left: 0%;
+            }
+        }
+
+        .middle{
+            position: relative;
+            height: $spaceHeight;
+            overflow: hidden;
+
+            .form-content{
+                width:700px;
+                height: $circleHeight;
+                background-color: mat-color($assOnline-app-accent);
+                box-shadow: 0 2px 7px 3px rgba(0, 0, 0, 0.28),
+                            0 0px 0px 0 rgba(0, 0, 0, 0),
+                            0 0px 0px 0 rgba(0, 0, 0, 0);
+
+                .mat-input-container{
+                    &.mat-focused .mat-input-placeholder {
+                        color: #2b2a2a;
+                    }
+                }
+
+                
+            }
+        }
+
+        .right{
+            position: relative;
+            width: $circleWidth / 2;
+            height: $spaceHeight;
+            overflow: hidden;
+
+            .circle{
+                left: -100%;
+            }
+        }
+
+        .action-butons{
+            position: absolute;
+            top: 4px;
+            right: 6px;
+
+            .save-btn{
+                width: $circleWidth - 10;
+                height: $circleHeight - 10;
+                background-color: white;
+
+                .mat-icon{
+                    padding: 11px 0;
+                    line-height: 25px;
+                }
+            }
+
+            .cancel-btn{
+                width: $circleWidth - 10;
+                height: $circleHeight - 10;
+                background-color: white;
+                color: red;
+                margin-left: 4px;
+
+                .mat-icon{
+                    padding: 11px 0;
+                    line-height: 25px;
+                }
+            }
+        }
+    }
+
+    .modalContent{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        .close-btn{
+
+        }
+    }
+    
+}

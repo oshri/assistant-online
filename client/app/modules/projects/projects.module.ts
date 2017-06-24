@@ -6,7 +6,8 @@ import {  MaterialModule,
           MdMenuModule,
           MdDialogModule,
           MdIconModule,
-          MdButtonModule } from '@angular/material';
+          MdButtonModule,
+          MdProgressSpinnerModule } from '@angular/material';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
 //Modules
@@ -35,7 +36,8 @@ import { NewProjectForm } from './components/newProjectForm/newProjectForm.compo
     FlexLayoutModule,
     MdDialogModule,
     MdIconModule,
-    MdButtonModule
+    MdButtonModule,
+    MdProgressSpinnerModule
   ],
   providers: [],
   bootstrap: []
