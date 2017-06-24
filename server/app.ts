@@ -6,14 +6,11 @@ import * as mongoose from 'mongoose';
 import * as path from 'path';
 
 // const Express = require('express');
-const jwt = require('express-jwt');
-const jwksRsa = require('jwks-rsa');
+import jwt = require('express-jwt');
+import jwksRsa = require('jwks-rsa');
 //const bodyParser = require('body-parser');
 
 import setRoutes from './routes';
-
-const jwt = require('express-jwt');
-const jwksRsa = require('jwks-rsa');
 
 const app = express();
 
