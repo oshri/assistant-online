@@ -7,7 +7,8 @@ import {  MaterialModule,
           MdIconRegistry,
           MdMenuModule,
           MdDialogModule,
-          MdIconModule } from '@angular/material';
+          MdIconModule,
+          MdButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
 
@@ -64,6 +65,7 @@ const brrr = provideAuth({
     FlexLayoutModule,
     MdDialogModule,
     MdIconModule,
+    MdButtonModule,
     LoadingModule.forRoot()
   ],
   providers: [

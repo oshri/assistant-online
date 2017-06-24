@@ -4,10 +4,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FlexLayoutModule } from "@angular/flex-layout";
 
 //Modules
-import { ProjectsRouterModule } from './projects.routes';
+import { DashboardRouterModule } from './dashboard.routes';
 
 // Components
-import { ProjectsComponent } from './components/projects/projects.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 // Services
 
@@ -15,17 +15,17 @@ import { ProjectsComponent } from './components/projects/projects.component';
 
 @NgModule({
   declarations: [
-    ProjectsComponent
+    DashboardComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    ProjectsRouterModule
+    DashboardRouterModule
   ],
   providers: [],
   bootstrap: []
 })
 
-export class ProjectsModule { }
+export class DashboardModule { }
