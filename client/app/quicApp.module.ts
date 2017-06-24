@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MaterialModule,
@@ -34,7 +34,7 @@ import { UserComponent } from './components/user/user.component';
 import { AppHeaderComponent } from './components/appHeader/appHeader.component';
 import { UserProfileDialogComponent } from './components/userProfileDIalog/userProfileDialog.component';
 
-
+import { httpFactory } from "./services/http.factory";
 
 const brrr = provideAuth({
             headerName: 'Authorization',
@@ -77,6 +77,11 @@ const brrr = provideAuth({
     brrr,
     HttpClient,
     {provide: API_URL, useValue: '/api/'},
+    {
+        provide: Http,
+        useFactory: httpFactory,
+        deps: [XHRBackend, RequestOptions]
+    }
   ],
   entryComponents: [
     UserProfileDialogComponent
