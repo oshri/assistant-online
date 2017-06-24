@@ -31,6 +31,7 @@ export class AuthService {
     this.lock.on("authenticated", (authResult) => {
       console.log("Auth Result", authResult);
       localStorage.setItem('id_token', authResult.idToken);
+      console.log("Auth result", authResult);
       this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
         this.loading.setValue(false);
         if (error) {
@@ -39,6 +40,7 @@ export class AuthService {
         }
 
         this.setSession(authResult);
+        console.log("Auth result", authResult);
         localStorage.setItem("profile", JSON.stringify(profile));
         console.log('Setting profile', profile);
         this.userProfile = profile;

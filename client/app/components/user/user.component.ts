@@ -8,7 +8,9 @@ import {
 } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { MdDialog, MdDialogRef } from '@angular/material';
-import { Http } from '@angular/http';
+import { Http, Response, RequestOptionsArgs, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { AuthHttp } from 'angular2-jwt';
 
 import { UserProfileDialogComponent } from './../userProfileDIalog/userProfileDialog.component';
 
