@@ -19,8 +19,10 @@ import { LoadingModule, LoadingService } from './modules/loading/loading.module'
 
 
 // Services
+import { AuthHttp, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
 import { Store } from './services/store/store';
 import { API_URL } from './app.tokens';
+import { HttpClient } from "./services/http-client";
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
@@ -33,6 +35,15 @@ import { AppHeaderComponent } from './components/appHeader/appHeader.component';
 import { UserProfileDialogComponent } from './components/userProfileDIalog/userProfileDialog.component';
 
 
+
+const brrr = provideAuth({
+            headerName: 'Authorization',
+            headerPrefix: 'bearer',
+            tokenName: 'token',
+            tokenGetter: (() => localStorage.getItem('id_token')),
+            globalHeaders: [{ 'Content-Type': 'application/json' }],
+            noJwtError: true
+        });
 
 @NgModule({
   declarations: [
@@ -62,6 +73,9 @@ import { UserProfileDialogComponent } from './components/userProfileDIalog/userP
     AuthGuardAdmin,
     UserService,
     MdIconRegistry,
+    AuthHttp,
+    brrr,
+    HttpClient,
     {provide: API_URL, useValue: '/api/'},
   ],
   entryComponents: [

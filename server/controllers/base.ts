@@ -6,7 +6,9 @@ abstract class BaseCtrl {
 
   // Get all
   getAll = (req, res) => {
+    console.log("User", req.user);
     this.model.find({}, (err, docs) => {
+      console.log(req.user);
       if (err) { return console.error(err); }
       res.json(docs);
     });
