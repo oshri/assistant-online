@@ -12,8 +12,13 @@ const routes: Routes = [
     path: 'login',
     component: HomeComponent 
   },{
-    path: 'builder',
-    loadChildren: './modules/builder/builder.module#BuilderModule'
+    path: 'dashboard',
+    loadChildren: './modules/dashboard/dashboard.module#DashboardModule'
+    // canActivate: [AuthGuardLogin]
+  },{
+    path: 'projects',
+    loadChildren: './modules/projects/projects.module#ProjectsModule'
+    // canActivate: [AuthGuardLogin]
   }
   // { path: 'account', component: AccountComponent, canActivate: [AuthGuardLogin] },
   // { path: 'admin', component: AdminComponent, canActivate: [AuthGuardAdmin] }

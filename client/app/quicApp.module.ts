@@ -7,7 +7,8 @@ import {  MaterialModule,
           MdIconRegistry,
           MdMenuModule,
           MdDialogModule,
-          MdIconModule } from '@angular/material';
+          MdIconModule,
+          MdButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
 
@@ -17,6 +18,9 @@ import { RoutingModule } from './routing.module';
 import { QuicAppComponent } from './quicApp.component';
 import { LoadingModule, LoadingService } from './modules/loading/loading.module';
 
+// Factories
+import { httpFactory } from "./services/http.factory";
+import { authHttpServiceFactory } from './services/authHttp.factory';
 
 // Services
 import { AuthHttp, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
@@ -35,17 +39,6 @@ import { AppHeaderComponent } from './components/appHeader/appHeader.component';
 import { UserProfileDialogComponent } from './components/userProfileDIalog/userProfileDialog.component';
 
 import { httpFactory } from "./services/http.factory";
-
-// const brrr = provideAuth({
-//             headerName: 'Authorization',
-//             headerPrefix: 'bearer',
-//             tokenName: 'token',
-//             tokenGetter: (() => localStorage.getItem('id_token')),
-//             globalHeaders: [{ 'Content-Type': 'application/json' }],
-//             noJwtError: true
-//         });
-
-console.log("Load modules");
 
 @NgModule({
   declarations: [
@@ -66,6 +59,7 @@ console.log("Load modules");
     FlexLayoutModule,
     MdDialogModule,
     MdIconModule,
+    MdButtonModule,
     LoadingModule.forRoot()
   ],
   providers: [
@@ -76,13 +70,17 @@ console.log("Load modules");
     UserService,
     MdIconRegistry,
     AuthHttp,
-    // brrr,
     HttpClient,
     {provide: API_URL, useValue: '/api/'},
     {
         provide: Http,
         useFactory: httpFactory,
         deps: [XHRBackend, RequestOptions]
+    },
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
     }
   ],
   entryComponents: [

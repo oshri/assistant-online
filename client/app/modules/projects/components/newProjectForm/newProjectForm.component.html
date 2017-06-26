@@ -1,0 +1,60 @@
+<div class="new-project-form">
+
+    <button     class="add-btn" 
+                *ngIf="!isVisible"
+                (click)="toogleModalState()"
+                [disabled]="submiting"
+                md-fab>
+        <md-progress-spinner
+            *ngIf="submiting"
+            class="example-margin"
+            color="accent"
+            mode="indeterminate"
+            value="100">
+        </md-progress-spinner>
+        <md-icon *ngIf="!submiting">add</md-icon>
+    </button>
+
+    <div    class="circle-parts" 
+            fxLayout="row"
+            fxLayoutAlign="end center"
+            [@animateCircle]="isVisible">
+            
+        <div class="left"><span class="circle"></span></div>
+        <div class="middle">
+            <form [formGroup]="newForm" class="form-content" (ngSubmit)="onSubmit()">
+                <div fxLayout="row" fxLayoutAlign="space-around center" >
+                    <md-input-container fxFlex="40%" floatPlaceholder="never" >
+                        <input mdInput placeholder="Project Name" formControlName="name">
+                    </md-input-container>
+                    <md-select placeholder="Framework" fxFlex="20%" floatPlaceholder="never" formControlName="framework">
+                        <md-option *ngFor="let framework of frameworks" [value]="framework.name">
+                            {{ framework.name }}
+                        </md-option>
+                    </md-select>
+                    <md-select placeholder="UI library" fxFlex="20%" floatPlaceholder="never" formControlName="library">
+                        <md-option *ngFor="let library of uilibrarys" [value]="library.name">
+                            {{ library.name }}
+                        </md-option>
+                    </md-select>
+                    <div fxFlex="12%"></div>
+                </div>
+            </form>
+        </div>
+        <div class="right"><span class="circle"></span></div>
+        <div class="action-butons">
+            <button class="save-btn" 
+                    md-fab
+                    type="submit"
+                    (click)="onSubmit()"
+                    [disabled]="newForm.invalid">
+            <md-icon>done</md-icon>
+            </button>
+            <button class="cancel-btn" 
+                    md-fab
+                    (click)="onReset()">
+                <md-icon>close</md-icon>
+            </button>
+        </div>
+    </div>
+</div>
