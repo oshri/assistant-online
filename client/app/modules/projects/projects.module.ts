@@ -19,8 +19,6 @@ import { NewProjectForm } from './components/newProjectForm/newProjectForm.compo
 
 // Services
 
-
-
 @NgModule({
   declarations: [
     ProjectsComponent,

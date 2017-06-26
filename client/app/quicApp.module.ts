@@ -38,8 +38,6 @@ import { UserComponent } from './components/user/user.component';
 import { AppHeaderComponent } from './components/appHeader/appHeader.component';
 import { UserProfileDialogComponent } from './components/userProfileDIalog/userProfileDialog.component';
 
-import { httpFactory } from "./services/http.factory";
-
 @NgModule({
   declarations: [
     QuicAppComponent,
