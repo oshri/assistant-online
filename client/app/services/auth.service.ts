@@ -23,6 +23,7 @@ export class AuthService {
     private http: Http,
     private store: Store) {
 
+      console.log("Created auth");
 
     this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
     this.store.set('loggedinStatus', this.isAuthenticated());

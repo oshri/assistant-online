@@ -4,6 +4,8 @@ import { MdIconRegistry } from '@angular/material';
 import { AuthService } from './services/auth.service';
 import { Store } from './services/store/store';
 
+console.log("Load app component");
+
 @Component({
   selector: 'quic-app',
   template:`

@@ -36,14 +36,16 @@ import { UserProfileDialogComponent } from './components/userProfileDIalog/userP
 
 import { httpFactory } from "./services/http.factory";
 
-const brrr = provideAuth({
-            headerName: 'Authorization',
-            headerPrefix: 'bearer',
-            tokenName: 'token',
-            tokenGetter: (() => localStorage.getItem('id_token')),
-            globalHeaders: [{ 'Content-Type': 'application/json' }],
-            noJwtError: true
-        });
+// const brrr = provideAuth({
+//             headerName: 'Authorization',
+//             headerPrefix: 'bearer',
+//             tokenName: 'token',
+//             tokenGetter: (() => localStorage.getItem('id_token')),
+//             globalHeaders: [{ 'Content-Type': 'application/json' }],
+//             noJwtError: true
+//         });
+
+console.log("Load modules");
 
 @NgModule({
   declarations: [
@@ -74,7 +76,7 @@ const brrr = provideAuth({
     UserService,
     MdIconRegistry,
     AuthHttp,
-    brrr,
+    // brrr,
     HttpClient,
     {provide: API_URL, useValue: '/api/'},
     {

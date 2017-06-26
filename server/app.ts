@@ -4,10 +4,6 @@ import * as express from 'express';
 import * as morgan from 'morgan';
 import * as mongoose from 'mongoose';
 import * as path from 'path';
-
-// const Express = require('express');
-const jwt = require('express-jwt');
-const jwksRsa = require('jwks-rsa');
 //const bodyParser = require('body-parser');
 
 import setRoutes from './routes';

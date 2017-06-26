@@ -14,6 +14,7 @@ export class HttpService extends Http {
   }
 
   request(url: string|Request, options?: RequestOptionsArgs): Observable<Response> {
+    console.log('URL', url);
     let token = localStorage.getItem('server_token');
     let profile = localStorage.getItem('userProfile');
     if (typeof url === 'string') { // meaning we have to add the token to the options, not in url
