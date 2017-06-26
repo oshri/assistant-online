@@ -5,11 +5,6 @@ import * as morgan from 'morgan';
 import * as mongoose from 'mongoose';
 import * as path from 'path';
 
-// const Express = require('express');
-import jwt = require('express-jwt');
-import jwksRsa = require('jwks-rsa');
-//const bodyParser = require('body-parser');
-
 import setRoutes from './routes';
 
 const app = express();
@@ -106,24 +101,6 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 
   setRoutes(app);
-
-  // app.use(jwt({
-  //   secret: jwksRsa.expressJwtSecret({
-  //     cache: true,
-  //     rateLimit: true,
-  //     jwksRequestsPerMinute: 5,
-  //     jwksUri: `https://quicappdev.auth0.com/.well-known/jwks.json`
-  //   }),
-  //   credentialsRequired: false,
-  //   getToken: function fromHeaderOrQuerystring(req) {
-  //     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-  //       return req.headers.authorization.split(' ')[1];
-  //     } else if (req.query && req.query.token) {
-  //       return req.query.token;
-  //     }
-  //     return null;
-  //   }
-  // }));
 
   app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, '../../public/index.html'));

@@ -9,7 +9,7 @@ interface AuthConfig {
 }
 
 export const AUTH_CONFIG: AuthConfig = {
-    clientID: 'a6nZBuUCCka1Sf5vwJdyIVIpxtAjMNb3',
+    clientID: 'XBjb2yjLKFOr7BhPUHltDaSnEVDL9SNh',
     domain: 'quicappdev.auth0.com',
     responseType: 'token id_token',
     audience: 'https://quicappdev.auth0.com/userinfo',
