@@ -22,23 +22,15 @@ abstract class BaseCtrl {
     });
   }
 
-  createControl = (req, res) => {
-    let ctrl = new ControlModel({ parentId: "Shy", id: "0001", name: "Yuli" });
-    console.log("ctrl", ctrl);
-    ctrl.save(function (err) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log('meow');
-      }
-    });
-  }
-
   // Insert
   insert = (req, res) => {
     const obj = new this.model(req.body);
+    console.log("Body", req.body);
+    console.log("Obj", obj);
     obj.save((err, item) => {
       // 11000 is the code for duplicate key error
+      console.log('Error', err);
+      console.log('Item', item);
       if (err && err.code === 11000) {
         res.sendStatus(400);
       }

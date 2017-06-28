@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
+import { Project, Page } from "../../../../../common/pojo/project";
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -12,7 +13,7 @@ export class ProjectsService {
     return this.http.get('/api/projects').map(res => res.json());
   }
 
-  addProject(project): Observable<any> {
+  addProject(project: Project): Observable<any> {
     return this.http.post('/api/projects', JSON.stringify(project));
   }
 
