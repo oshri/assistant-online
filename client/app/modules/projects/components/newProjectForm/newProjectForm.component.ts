@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { trigger, state, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
+import { MdSnackBar } from '@angular/material';
 import { ProjectsService } from '../../services/projects.service';
 
 interface iFramework {
@@ -39,7 +40,8 @@ export class NewProjectForm implements OnInit {
     uilibrarys: iUilibrary[] = [{id: 1, name: 'Material Design'}];
 
     constructor(
-        private projectSrv: ProjectsService
+        private projectSrv: ProjectsService,
+        private snackbar: MdSnackBar
     ){
         
     }
@@ -50,9 +52,14 @@ export class NewProjectForm implements OnInit {
             framework: new FormControl('', [Validators.required]),
             library: new FormControl('', [Validators.required])
         });
-
-        console.log(this.newForm)
     }
+
+    showNotify(message: string, action: string): void {
+        this.snackbar.open(message, action, {
+        duration: 3000
+        });
+    }
+
 
     toogleModalState(){
         this.isVisible = !this.isVisible;
@@ -65,9 +72,11 @@ export class NewProjectForm implements OnInit {
                 this.submiting = false;
             },
             (error) => {
-                this.submiting = true;
+                this.submiting = false;
                 this.toogleModalState();
-            });
+                this.showNotify(error, 'NEWPROJECT');
+            }
+        );
     }
 
     onReset(){

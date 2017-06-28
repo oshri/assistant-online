@@ -81,7 +81,7 @@ export class AuthService {
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
     this.store.set('loggedinStatus', this.isAuthenticated());
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/projects']);
   }
 
   private dropSession(): void {
