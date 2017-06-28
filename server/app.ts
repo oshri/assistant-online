@@ -30,7 +30,7 @@ app.use(jwt({
 }));
 
 // return error message for unauthorized requests
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   console.log(req.headers);
   if (err.name === 'UnauthorizedError') {
     res.status(401).json({message:'Missing or invalid token'});
@@ -40,29 +40,6 @@ app.use(function (err, req, res, next) {
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
-// // Authentication middleware. When used, the
-// // access token must exist and be verified against
-// // the Auth0 JSON Web Key Set
-// const checkJwt = jwt({
-//   // Dynamically provide a signing key
-//   // based on the kid in the header and 
-//   // the singing keys provided by the JWKS endpoint.
-//   secret: jwksRsa.expressJwtSecret({
-//     cache: true,
-//     rateLimit: true,
-//     jwksRequestsPerMinute: 5,
-//     jwksUri: `https://quicappdev.auth0.com/.well-known/jwks.json`
-//   }),
-
-//   // Validate the audience and the issuer.
-//   audience: 'a6nZBuUCCka1Sf5vwJdyIVIpxtAjMNb3',
-//   issuer: `https://quicappdev.auth0.com/`,
-//   algorithms: ['RS256']
-// });
-
-// app.use(checkJwt);
-
 
 app.use(morgan('dev'));
 
@@ -108,7 +85,7 @@ db.once('open', () => {
   });
 
   app.listen(app.get('port'), () => {
-    console.log('Assistant Online listening on port ' + app.get('port'));
+    console.log('quicApp listening on port ' + app.get('port'));
   });
 
 });

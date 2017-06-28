@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MdIconRegistry } from '@angular/material';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './services/auth/auth.service';
 import { Store } from './services/store/store';
 
 console.log("Load app component");

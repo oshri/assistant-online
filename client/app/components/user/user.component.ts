@@ -6,7 +6,7 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Http, Response, RequestOptionsArgs, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -47,8 +47,6 @@ export class UserComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('after closed', result);
-      this.http.post(`http://localhost:4200/api/timesheet`, {bang: 5}).
-        subscribe(logged => console.log("logged", logged), fail => console.error("failed", fail));
     });
   };
 }

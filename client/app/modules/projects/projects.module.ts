@@ -18,6 +18,8 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { NewProjectForm } from './components/newProjectForm/newProjectForm.component';
 
 // Services
+import { ProjectsService } from './services/projects.service';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { NewProjectForm } from './components/newProjectForm/newProjectForm.compo
     MdButtonModule,
     MdProgressSpinnerModule
   ],
-  providers: [],
+  providers: [
+    ProjectsService
+  ],
   bootstrap: []
 })
 

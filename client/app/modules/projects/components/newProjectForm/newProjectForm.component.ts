@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { trigger, state, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
+import { ProjectsService } from '../../services/projects.service';
 
 interface iFramework {
     id: number,
@@ -18,22 +19,6 @@ interface iUilibrary {
     styleUrls: ['newProjectForm.component.scss'],
     templateUrl: 'newProjectForm.component.html',
     animations: [
-        // trigger('animateCircle', [
-        //     transition('0 => 1', [
-        //         query('.circle-parts', [
-        //             stagger(0, [
-        //                 animate('200ms cubic-bezier(.35,0,.25,1)', style({opacity: 0}))
-        //             ])
-        //         ])
-        //     ]),
-        //     transition('1 => 0', [
-        //         query('.circle-parts', [
-        //             stagger(0, [
-        //                 animate('300ms cubic-bezier(.35,0,.25,1)', style({opacity: 1}))
-        //             ])
-        //         ])
-        //     ])
-        // ])
         trigger('animateCircle', [
             state('false', style({
                 opacity: 0
@@ -53,7 +38,9 @@ export class NewProjectForm implements OnInit {
     frameworks: iFramework[] = [{id: 1, name: 'Angular'}];
     uilibrarys: iUilibrary[] = [{id: 1, name: 'Material Design'}];
 
-    constractor(){
+    constructor(
+        private projectSrv: ProjectsService
+    ){
         
     }
 
@@ -73,13 +60,14 @@ export class NewProjectForm implements OnInit {
 
     onSubmit(){
         console.log(this.newForm.value);
-        this.submiting = true;
-        this.toogleModalState();
-
-        // TODO add call to service and update ui on response status
-        setTimeout(() => {
-            this.submiting = false;
-        }, 800);
+        this.projectSrv.addProject(this.newForm.value).subscribe(
+            (success) => {
+                this.submiting = false;
+            },
+            (error) => {
+                this.submiting = true;
+                this.toogleModalState();
+            });
     }
 
     onReset(){
