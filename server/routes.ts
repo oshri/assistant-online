@@ -15,9 +15,9 @@ export default function setRoutes(app) {
   const userCtrl = new UserCtrl();
   const projectCtrl = new ProjectCtrl();
 
-  app.route('/api/authorization').post(function(req, res){
+  app.route('/api/authorization').post(function (req, res) {
     const auth = req.headers.authorization;
-    res.status(201).send({message:"quickApp authorization endpoint success"});
+    res.status(201).send({ message: "quickApp authorization endpoint success" });
   });
 
   // Users
@@ -36,6 +36,7 @@ export default function setRoutes(app) {
   // });
 
   app.route('/api/projects').post(projectCtrl.insert);
+  app.route('/api/projects').get(projectCtrl.getAll);
   app.route('/api/projects/:id').get(projectCtrl.get);
   app.route('/api/projects/:id').put(projectCtrl.update);
   app.route('/api/projects/:id').delete(projectCtrl.delete);
