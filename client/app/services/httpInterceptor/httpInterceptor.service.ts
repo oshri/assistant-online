@@ -19,51 +19,28 @@ export class HttpInterceptor extends Http {
   }
 
   post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-
-    // let token = localStorage.getItem('server_token');
-    // let profile = localStorage.getItem('profile');
-
-    // options = this.getRequestOptionArgs(options);
-    // let json = { user_id: 'Empty' };
-    // if (profile) {
-    //   json = JSON.parse(profile);
-    //   console.log('profile', json);
-    // } else {
-    //   console.log('no profile');
-    // }
-    // console.log('url', url);
-    // // Make it work with the actual url
-    // if (url.includes('local')){
-    //   if (options) {
-    //     options.headers.append('Authorization', `Bearer ${token}`);
-    //     options.headers.append('user_id', json.user_id);
-    //   } 
-    // } else {
-    //     console.log('not adding headers to other requests');
-    // }
-
-    return this.intercept(super.post(url, body, this.getRequestOptionArgs(options)));
+    return this.intercept(super.post(url, body, this.getRequestOptionArgs(url, options)));
   }
 
   put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.put(url, body, this.getRequestOptionArgs(options)));
+    return this.intercept(super.put(url, body, this.getRequestOptionArgs(url, options)));
   }
 
   delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
     return this.intercept(super.delete(url, options));
   }
 
-  private getRequestOptionArgs(options?: RequestOptionsArgs): RequestOptionsArgs {
+  private getRequestOptionArgs(url: string, options?: RequestOptionsArgs): RequestOptionsArgs {
     if (options == null) {
       options = new RequestOptions();
     }
     if (options.headers == null) {
       options.headers = new Headers();
     }
-
-    let token = localStorage.getItem('server_token');
-    let profile = localStorage.getItem('profile');
-    if(token && profile){
+    
+    if (url.includes('local')){
+      let token = localStorage.getItem('server_token');
+      let profile = localStorage.getItem('profile');
       let user = JSON.parse(profile);
       options.headers.append('Authorization', `Bearer ${token}`);
       options.headers.append('user_id', user.user_id);
