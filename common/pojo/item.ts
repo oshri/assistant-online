@@ -4,6 +4,7 @@ class Item {
     public type: String;
     public id: String;
     public name: String;
+    public creationTime: Date;
 }
 
 export { Item };

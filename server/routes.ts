@@ -3,17 +3,21 @@ import * as express from 'express';
 
 import UserCtrl from './controllers/user';
 import User from './models/user';
+
+import ProjectCtrl from './controllers/project';
+import ProjectModel from "./models/project";
+
 var request = require('request');
 
 
 export default function setRoutes(app) {
 
   const userCtrl = new UserCtrl();
+  const projectCtrl = new ProjectCtrl();
 
-  app.route('/api/createcontrol').get(userCtrl.createControl);
-  app.route('/api/authorization').post(function(req, res){
+  app.route('/api/authorization').post(function (req, res) {
     const auth = req.headers.authorization;
-    res.status(201).send({message:"quickApp authorization endpoint success"});
+    res.status(201).send({ message: "quickApp authorization endpoint success" });
   });
 
   // Users
@@ -26,10 +30,14 @@ export default function setRoutes(app) {
   app.route('/api/user/:id').delete(userCtrl.delete);
 
   // Projects
-  app.route('/api/projects').post((request, response) => {
-    console.log('request', request.body);
-    response.status(201).send({message: 'project add :)'})
-  });
+  // app.route('/api/projects').post((request, response) => {
+  //   console.log('request', request.body);
+  //   response.status(201).send({message: 'project add :)'})
+  // });
 
-
+  app.route('/api/projects').post(projectCtrl.insert);
+  app.route('/api/projects').get(projectCtrl.getAll);
+  app.route('/api/projects/:id').get(projectCtrl.get);
+  app.route('/api/projects/:id').put(projectCtrl.update);
+  app.route('/api/projects/:id').delete(projectCtrl.delete);
 }

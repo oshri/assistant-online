@@ -15,6 +15,14 @@ export class HttpInterceptor extends Http {
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
+    if (options == null) {
+      options = new RequestOptions();
+    }
+    if (options.headers == null) {
+      options.headers = new Headers();
+    }
+    let token = localStorage.getItem('server_token');
+    options.headers.append('Authorization', `Bearer ${token}`);
     return this.intercept(super.get(url, options));
   }
 
@@ -37,17 +45,18 @@ export class HttpInterceptor extends Http {
     if (options.headers == null) {
       options.headers = new Headers();
     }
-    
-    if (url.includes('local')){
+    // If the url contains '/api/' this means it's a call to our local server
+    // so we add our custom header. In the future we'll add our real web server.
+    if (url.includes('/api/')) {
       let token = localStorage.getItem('server_token');
       let profile = localStorage.getItem('profile');
       let user = JSON.parse(profile);
       options.headers.append('Authorization', `Bearer ${token}`);
       options.headers.append('user_id', user.user_id);
+      options.headers.append('charset', 'UTF-8');
     }
 
-    options.headers.append('Content-Type','application/json');
-    options.headers.append('charset','UTF-8');
+    options.headers.append('Content-Type', 'application/json');
     return options;
   }
 

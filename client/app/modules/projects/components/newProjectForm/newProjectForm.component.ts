@@ -33,20 +33,20 @@ interface iUilibrary {
 })
 
 export class NewProjectForm implements OnInit {
-    isVisible : boolean = false;
+    isVisible: boolean = false;
     submiting: boolean = false;
     newForm: FormGroup;
-    frameworks: iFramework[] = [{id: 1, name: 'Angular'}];
-    uilibrarys: iUilibrary[] = [{id: 1, name: 'Material Design'}];
+    frameworks: iFramework[] = [{ id: 1, name: 'Angular' }];
+    uilibrarys: iUilibrary[] = [{ id: 1, name: 'Material Design' }];
 
     constructor(
         private projectSrv: ProjectsService,
         private snackbar: MdSnackBar
-    ){
-        
+    ) {
+
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.newForm = new FormGroup({
             name: new FormControl('', [Validators.required]),
             framework: new FormControl('', [Validators.required]),
@@ -56,20 +56,30 @@ export class NewProjectForm implements OnInit {
 
     showNotify(message: string, action: string): void {
         this.snackbar.open(message, action, {
-        duration: 3000
+            duration: 3000
         });
     }
 
 
-    toogleModalState(){
+    toogleModalState() {
         this.isVisible = !this.isVisible;
     }
 
-    onSubmit(){
-        console.log(this.newForm.value);
+    onSubmit() {
+        let val = this.newForm.value;
+        val.creationTime = new Date();
         this.projectSrv.addProject(this.newForm.value).subscribe(
             (success) => {
                 this.submiting = false;
+                this.projectSrv.getProjects().subscribe((success) => {
+                    this.submiting = false;
+                    console.log("Gotten", success);
+                },
+                    (error) => {
+                        this.submiting = false;
+                        this.toogleModalState();
+                        this.showNotify(error, 'NEWPROJECT');
+                    });
             },
             (error) => {
                 this.submiting = false;
@@ -79,7 +89,7 @@ export class NewProjectForm implements OnInit {
         );
     }
 
-    onReset(){
+    onReset() {
         this.newForm.reset();
         this.isVisible = !this.isVisible;
     }

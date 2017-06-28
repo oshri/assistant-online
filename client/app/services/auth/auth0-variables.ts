@@ -12,6 +12,7 @@ interface Auth0Config {
   oauthTokenUrl: string
 }
 
+// TODO: Load client secret from a secure location
 export const AUTH0_CONFIG: Auth0Config = {
     clientID: 'XBjb2yjLKFOr7BhPUHltDaSnEVDL9SNh',
     domain: 'quicappdev.auth0.com',
