@@ -19,18 +19,16 @@ import { QuicAppComponent } from './quicApp.component';
 import { LoadingModule, LoadingService } from './modules/loading/loading.module';
 
 // Factories
-import { httpFactory } from "./services/http.factory";
-import { authHttpServiceFactory } from './services/authHttp.factory';
+import { httpFactory } from "./services/httpInterceptor/http.factory";
+import { authHttpServiceFactory } from './services/auth/authHttp.factory';
 
 // Services
 import { AuthHttp, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
 import { Store } from './services/store/store';
 import { API_URL } from './app.tokens';
-import { HttpClient } from "./services/http-client";
-import { UserService } from './services/user.service';
-import { AuthService } from './services/auth.service';
-import { AuthGuardLogin } from './services/auth-guard-login.service';
-import { AuthGuardAdmin } from './services/auth-guard-admin.service';
+import { AuthService } from './services/auth/auth.service';
+import { AuthGuardLogin } from './services/guards/auth-guard-login.service';
+import { AuthGuardAdmin } from './services/guards/auth-guard-admin.service';
 
 // Components
 import { HomeComponent } from './components/home/home.component';
@@ -65,10 +63,8 @@ import { UserProfileDialogComponent } from './components/userProfileDIalog/userP
     AuthService,
     AuthGuardLogin,
     AuthGuardAdmin,
-    UserService,
     MdIconRegistry,
     AuthHttp,
-    HttpClient,
     {provide: API_URL, useValue: '/api/'},
     {
         provide: Http,

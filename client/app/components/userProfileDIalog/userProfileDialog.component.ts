@@ -4,7 +4,7 @@ import {  ChangeDetectionStrategy,
           Input,
           Output,
           ViewChild } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
 @Component({

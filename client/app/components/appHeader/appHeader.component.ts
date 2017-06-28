@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
-import { AuthService } from './../../services/auth.service';
-import { Store } from './../../services/store/store';
+import { AuthService } from '../../services/auth/auth.service';
+import { Store } from '../../services/store/store';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { Subscription } from 'rxjs/Subscription';
