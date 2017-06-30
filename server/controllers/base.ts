@@ -7,7 +7,6 @@ abstract class BaseCtrl {
   // Get all
   public getAll (req, res) {
     this.model.find({parent: req.headers['parent']}, (err, docs) => {
-      console.log(req.user);
       if (err) { return console.error(err); }
       res.json(docs);
     });
@@ -59,9 +58,17 @@ abstract class BaseCtrl {
 
   // Delete by id
   public delete (req, res) {
-    this.model.findOneAndRemove({ _id: req.params.id }, (err) => {
-      if (err) { return console.error(err); }
-      res.sendStatus(200);
+    // this.model.findOneAndRemove({ _id: req.params.id }, (err) => {
+    //   if (err) { return console.error(err); }
+    //   res.sendStatus(200);
+    // });
+    // Using this implementation to allow for cascading delete
+    this.model.findOne({ _id: req.params.id }, (err, obj) => {
+      if (err) { 
+        return console.error(err); 
+      }
+      obj.remove();
+      res.json(obj);
     });
   }
 }

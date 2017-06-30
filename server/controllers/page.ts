@@ -11,13 +11,11 @@ export default class PageCtrl extends BaseCtrl {
   public getAll(req, res) {
     // console.log(req);
     req.headers['parent'] = req.params.id;
-    console.log('This', this);
     super.getAll(req, res);
   }
 
   // Insert
   public insert(req, res) {
-    console.log("Request Body", req.body);
     const obj = new this.model(req.body);
     req.headers['parent'] = req.params.id;
     return super.insert(req, res);
