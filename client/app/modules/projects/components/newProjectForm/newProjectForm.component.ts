@@ -67,7 +67,6 @@ export class NewProjectForm implements OnInit {
 
     onSubmit() {
         let val = this.newForm.value;
-        val.creationTime = new Date();
         this.projectSrv.addProject(this.newForm.value).subscribe(
             (success) => {
                 this.submiting = false;
