@@ -13,7 +13,9 @@ const ProjectModel = mongoose.model('Project', projectSchema);
 
 const pageSchema = new mongoose.Schema({
     name: String,
-    creationTime: Date
+    layout: String,
+    creationTime: Date,
+    parent: String
 });
 const PageModel = mongoose.model('Page', pageSchema);
 

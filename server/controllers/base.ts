@@ -25,6 +25,7 @@ abstract class BaseCtrl {
   public insert (req, res) {
     const obj = new this.model(req.body);
     obj.parent = req.headers['parent'];
+    obj.creationTime = new Date();
     obj.save((err, item) => {
       // 11000 is the code for duplicate key error
       console.log('Error', err);
@@ -41,6 +42,7 @@ abstract class BaseCtrl {
 
   // Get by id
   public get(req, res) {
+    console.log("Get Request", req);
     this.model.findOne({ _id: req.params.id }, (err, obj) => {
       if (err) { return console.error(err); }
       res.json(obj);

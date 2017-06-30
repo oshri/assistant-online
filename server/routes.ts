@@ -7,6 +7,10 @@ import User from './models/user';
 import ProjectCtrl from './controllers/project';
 import ProjectModel from "./models/project";
 
+import PageModel from "./models/project";
+import PageCtrl from './controllers/page';
+
+
 var request = require('request');
 
 
@@ -14,6 +18,7 @@ export default function setRoutes(app) {
 
   const userCtrl = new UserCtrl();
   const projectCtrl = new ProjectCtrl();
+  const pageCtrl = new PageCtrl();
 
   app.route('/api/authorization').post(function (req, res) {
     const auth = req.headers.authorization;
@@ -40,4 +45,13 @@ export default function setRoutes(app) {
   app.route('/api/projects/:id').get((req, res) => projectCtrl.get(req, res));
   app.route('/api/projects/:id').put((req, res) => projectCtrl.update(req, res));
   app.route('/api/projects/:id').delete((req, res) => projectCtrl.delete(req, res));
+
+  // The id of the owning project
+  app.route('/api/pages/:id').post((req, res) => {
+    pageCtrl.insert(req, res);
+  });
+  app.route('/api/pages/:id').get((req, res) => pageCtrl.getAll(req, res));
+  // app.route('/api/pages/:id').get((req, res) => pageCtrl.get(req, res));
+  app.route('/api/pages/:id').put((req, res) => pageCtrl.update(req, res));
+  app.route('/api/pages/:id').delete((req, res) => pageCtrl.delete(req, res));
 }
