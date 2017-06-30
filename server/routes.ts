@@ -35,9 +35,9 @@ export default function setRoutes(app) {
   //   response.status(201).send({message: 'project add :)'})
   // });
 
-  app.route('/api/projects').post(projectCtrl.insert);
-  app.route('/api/projects').get(projectCtrl.getAll);
-  app.route('/api/projects/:id').get(projectCtrl.get);
-  app.route('/api/projects/:id').put(projectCtrl.update);
-  app.route('/api/projects/:id').delete(projectCtrl.delete);
+  app.route('/api/projects').post((req, res) => projectCtrl.insert(req, res));
+  app.route('/api/projects').get((req, res) => projectCtrl.getAll(req, res));
+  app.route('/api/projects/:id').get((req, res) => projectCtrl.get(req, res));
+  app.route('/api/projects/:id').put((req, res) => projectCtrl.update(req, res));
+  app.route('/api/projects/:id').delete((req, res) => projectCtrl.delete(req, res));
 }
