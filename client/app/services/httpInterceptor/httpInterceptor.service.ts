@@ -16,8 +16,10 @@ export class HttpInterceptor extends Http {
 
   private setUserHeader(options?: RequestOptionsArgs) {
     let profile = localStorage.getItem('profile');
-    let user = JSON.parse(profile);
-    options.headers.append('user_id', user.user_id);
+    if (profile) {
+      let user = JSON.parse(profile);
+      options.headers.append('user_id', user.user_id);
+    }
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {

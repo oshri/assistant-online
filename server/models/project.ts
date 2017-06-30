@@ -5,7 +5,8 @@ const projectSchema = new mongoose.Schema({
     name: String,
     framework: String,
     library: String,
-    creationTime: Date
+    creationTime: Date,
+    parent: String
 });
 
 const ProjectModel = mongoose.model('Project', projectSchema);
