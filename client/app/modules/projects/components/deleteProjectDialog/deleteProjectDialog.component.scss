@@ -1,0 +1,24 @@
+:host(delete-project-dialog){
+    
+
+    .mat-dialog-actions{
+
+
+        .logout-btn{
+            font-size: 13px;
+            color: #aaa;
+            cursor: pointer;
+            transition: color .2s;            
+
+            &:hover{
+                color: gray;
+            }
+            
+        }
+
+        .form-conatiner{
+            padding-bottom: 12px;
+        }
+    }
+
+}

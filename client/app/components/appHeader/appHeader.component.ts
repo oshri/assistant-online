@@ -26,6 +26,10 @@ export class AppHeaderComponent implements OnInit,OnDestroy {
 
     headerState$ = this.store.select('loggedinStatus');
     headerSubscription: Subscription;
+    
+    headerTitle$ = this.store.select('appHeaderTitle');
+    headerTitleSubscription: Subscription;
+
     routerEvents: Subscription;
 
     @Input()
@@ -48,13 +52,18 @@ export class AppHeaderComponent implements OnInit,OnDestroy {
             this.authState = this.updateHeaderState(state);            
         });
 
-        this.routerEvents = this.router.events.subscribe((state: any) => {
-            this._stateName = state.url;
+        this.headerTitleSubscription = this.headerTitle$.subscribe((title: string) => {
+            this._stateName = title;
         });
+
+        // this.routerEvents = this.router.events.subscribe((state: any) => {
+        //     this._stateName = state.url;
+        // });
     }
 
     ngOnDestroy(){
         this.headerSubscription.unsubscribe();
+        this.headerTitleSubscription.unsubscribe();
         this.routerEvents.unsubscribe();
     }
 

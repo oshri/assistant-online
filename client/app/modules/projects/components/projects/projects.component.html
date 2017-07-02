@@ -1,5 +1,13 @@
-<div>
-  <new-project-form>
-    hiiii
-  </new-project-form>
+<div  class="projects-list" 
+        fxLayout="row"
+        fxLayoutWrap>
+
+    <project-box
+      *ngFor="let project of (data | async).projects"
+      [data]="project"
+      (change)="onChanges($event)"
+      (remove)="onRemove($event)">
+    </project-box>
+
 </div>
+<new-project-form></new-project-form>
