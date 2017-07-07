@@ -5,21 +5,19 @@ import Data from '../models/project';
 //import User from '../models/user';
 import BaseCtrl from './base';
 
-export default class ProjectCtrl extends BaseCtrl {
-  model = Data.ProjectModel;
+export default class PageCtrl extends BaseCtrl {
+  model = Data.PageModel;
 
   public getAll(req, res) {
-    console.log("User", req.user);
-    req.headers['parent'] = req.headers['user_id'];
-    console.log('This', this);
+    // console.log(req);
+    req.headers['parent'] = req.params.id;
     super.getAll(req, res);
   }
 
   // Insert
   public insert(req, res) {
-    console.log('This', this);
     const obj = new this.model(req.body);
-    req.headers['parent'] = req.headers['user_id'];
+    req.headers['parent'] = req.params.id;
     return super.insert(req, res);
   }
 }

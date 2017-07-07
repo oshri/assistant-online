@@ -5,17 +5,15 @@ abstract class BaseCtrl {
   abstract model: any;
 
   // Get all
-  getAll = (req, res) => {
-    console.log("User", req.user);
-    this.model.find({}, (err, docs) => {
-      console.log(req.user);
+  public getAll (req, res) {
+    this.model.find({parent: req.headers['parent']}, (err, docs) => {
       if (err) { return console.error(err); }
       res.json(docs);
     });
   }
 
   // Count all
-  count = (req, res) => {
+  public count (req, res) {
     this.model.count((err, count) => {
       if (err) { return console.error(err); }
       res.json(count);
@@ -23,10 +21,10 @@ abstract class BaseCtrl {
   }
 
   // Insert
-  insert = (req, res) => {
+  public insert (req, res) {
     const obj = new this.model(req.body);
-    console.log("Body", req.body);
-    console.log("Obj", obj);
+    obj.parent = req.headers['parent'];
+    obj.creationTime = new Date();
     obj.save((err, item) => {
       // 11000 is the code for duplicate key error
       console.log('Error', err);
@@ -42,7 +40,8 @@ abstract class BaseCtrl {
   }
 
   // Get by id
-  get = (req, res) => {
+  public get(req, res) {
+    console.log("Get Request", req);
     this.model.findOne({ _id: req.params.id }, (err, obj) => {
       if (err) { return console.error(err); }
       res.json(obj);
@@ -50,7 +49,7 @@ abstract class BaseCtrl {
   }
 
   // Update by id
-  update = (req, res) => {
+  public update (req, res) {
     this.model.findOneAndUpdate({ _id: req.params.id }, req.body, (err) => {
       if (err) { return console.error(err); }
       res.sendStatus(200);
@@ -58,10 +57,18 @@ abstract class BaseCtrl {
   }
 
   // Delete by id
-  delete = (req, res) => {
-    this.model.findOneAndRemove({ _id: req.params.id }, (err) => {
-      if (err) { return console.error(err); }
-      res.sendStatus(200);
+  public delete (req, res) {
+    // this.model.findOneAndRemove({ _id: req.params.id }, (err) => {
+    //   if (err) { return console.error(err); }
+    //   res.sendStatus(200);
+    // });
+    // Using this implementation to allow for cascading delete
+    this.model.findOne({ _id: req.params.id }, (err, obj) => {
+      if (err) { 
+        return console.error(err); 
+      }
+      obj.remove();
+      res.json(obj);
     });
   }
 }
