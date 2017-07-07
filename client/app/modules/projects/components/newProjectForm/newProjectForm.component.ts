@@ -3,6 +3,8 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { trigger, state, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 import { MdSnackBar } from '@angular/material';
 import { ProjectsService } from '../../services/projects.service';
+import { Router } from '@angular/router';
+import { iProject } from './../../models/project.interface';
 
 interface iFramework {
     id: number,
@@ -41,7 +43,8 @@ export class NewProjectForm implements OnInit {
 
     constructor(
         private projectSrv: ProjectsService,
-        private snackbar: MdSnackBar
+        private snackbar: MdSnackBar,
+        private router: Router
     ) {
 
     }
@@ -67,18 +70,13 @@ export class NewProjectForm implements OnInit {
 
     onSubmit() {
         let val = this.newForm.value;
+        val.creationTime = new Date();
+        this.submiting = true;
         this.projectSrv.addProject(this.newForm.value).subscribe(
-            (success) => {
+            (project: iProject) => {
+                this.toogleModalState();
                 this.submiting = false;
-                this.projectSrv.getProjects().subscribe((success) => {
-                    this.submiting = false;
-                    console.log("Gotten", success);
-                },
-                    (error) => {
-                        this.submiting = false;
-                        this.toogleModalState();
-                        this.showNotify(error, 'NEWPROJECT');
-                    });
+                this.router.navigate(['/projects', project._id]);
             },
             (error) => {
                 this.submiting = false;
@@ -87,6 +85,7 @@ export class NewProjectForm implements OnInit {
             }
         );
     }
+
 
     onReset() {
         this.newForm.reset();

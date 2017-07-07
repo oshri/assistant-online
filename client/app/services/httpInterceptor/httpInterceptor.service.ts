@@ -44,7 +44,7 @@ export class HttpInterceptor extends Http {
   }
 
   delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.delete(url, options));
+    return this.intercept(super.delete(url, this.getRequestOptionArgs(url, options)));
   }
 
   private getRequestOptionArgs(url: string, options?: RequestOptionsArgs): RequestOptionsArgs {

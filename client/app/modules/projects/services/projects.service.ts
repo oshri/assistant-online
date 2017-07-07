@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
-
+import { iProject } from '../models/project.interface';
 import { Observable } from 'rxjs/Observable';
-import { Project, Page } from "../../../../../common/pojo/project";
+
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -13,20 +13,20 @@ export class ProjectsService {
     return this.http.get('/api/projects').map(res => res.json());
   }
 
-  addProject(project: Project): Observable<any> {
-    return this.http.post('/api/projects', JSON.stringify(project));
+  addProject(project: iProject): Observable<any> {
+    return this.http.post('/api/projects', JSON.stringify(project)).map(res => res.json());
   }
 
-  getProject(project): Observable<any> {
-    return this.http.get(`/api/projects/${project._id}`).map(res => res.json());
+  getProject(id): Observable<any> {
+    return this.http.get(`/api/projects/${id}`).map(res => res.json());
   }
 
   editProjects(project): Observable<any> {
     return this.http.put(`/api/projects/${project._id}`, JSON.stringify(project));
   }
 
-  deleteProject(project): Observable<any> {
-    return this.http.delete(`/api/projects/${project._id}`);
+  deleteProject(id): Observable<any> {
+    return this.http.delete(`/api/projects/${id}`);
   }
-
+  
 }

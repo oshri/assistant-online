@@ -16,15 +16,24 @@ import { ProjectsRouterModule } from './projects.routes';
 // Components
 import { ProjectsComponent } from './components/projects/projects.component';
 import { NewProjectForm } from './components/newProjectForm/newProjectForm.component';
+import { ProjectBoxComponent } from './components/projectBox/projectBox.component';
+import { ProjectComponent } from './components/project/project.component'; 
+import { DeleteProjectDialogComponent } from './components/deleteProjectDialog/deleteProjectDialog.component';
 
 // Services
 import { ProjectsService } from './services/projects.service';
+import { ProjectsResolver } from './services/projects.resolve';
+import { Store } from './../../services/store/store';
+
 
 
 @NgModule({
   declarations: [
     ProjectsComponent,
-    NewProjectForm
+    NewProjectForm,
+    ProjectBoxComponent,
+    ProjectComponent,
+    DeleteProjectDialogComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +49,11 @@ import { ProjectsService } from './services/projects.service';
     MdProgressSpinnerModule
   ],
   providers: [
-    ProjectsService
+    ProjectsService,
+    ProjectsResolver
+  ],
+  entryComponents: [
+    DeleteProjectDialogComponent
   ],
   bootstrap: []
 })

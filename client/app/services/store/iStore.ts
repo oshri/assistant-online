@@ -1,3 +1,4 @@
 export interface iStore{
-    loggedinStatus: boolean
+    loggedinStatus: boolean,
+    appHeaderTitle: String
 }

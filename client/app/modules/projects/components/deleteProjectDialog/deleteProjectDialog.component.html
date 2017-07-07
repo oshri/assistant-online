@@ -1,0 +1,31 @@
+<md-dialog-content class="delete-project-dialog">
+    <div fxLayout="column" fxLayoutAlign="space-between none" fxLayoutWrap>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+            <h1>
+                Are you ABSOLUTELY sure?
+            </h1>
+            <button class="close-btn" [md-dialog-close]="true">
+                <div class="close-animation"></div>
+            </button>
+        </div>
+        <p> This will permanently delete the <span>{{data.name}}</span> project,
+            Once you delete a project, there is no going back. <br>
+            Please be certain.
+        </p>
+        <div class="form-container" fxLayout="column" fxLayoutWrap>
+            Please type in the name of the project to confirm.
+            <form [formGroup]="form" class="form-content" (ngSubmit)="onSubmit()">
+                <md-input-container fxFlex="100%" floatPlaceholder="never" >
+                    <input mdInput placeholder="Project Name" formControlName="name">
+                </md-input-container>
+            </form>
+            <button class="delete-btn" 
+                    md-raised-button
+                    type="submit"
+                    (click)="onSubmit()"
+                    [disabled]="form.invalid">
+                I understand the consequences, delete this project
+            </button>
+        </div>
+    </div>
+</md-dialog-content>

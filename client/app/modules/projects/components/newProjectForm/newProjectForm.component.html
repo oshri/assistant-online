@@ -18,6 +18,7 @@
     <div    class="circle-parts" 
             fxLayout="row"
             fxLayoutAlign="end center"
+            *ngIf="isVisible"
             [@animateCircle]="isVisible">
             
         <div class="left"><span class="circle"></span></div>

@@ -7,7 +7,8 @@ import 'rxjs/add/operator/pluck';
 import { iStore } from './iStore';
 
 const state: iStore = {
-    loggedinStatus: false
+    loggedinStatus: false,
+    appHeaderTitle: ''
 }
 
 @Injectable()
