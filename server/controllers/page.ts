@@ -1,12 +1,12 @@
 import * as dotenv from 'dotenv';
 import * as jwt from 'jsonwebtoken';
 
-import Data from '../models/project';
+import PageModel from '../models/page';
 //import User from '../models/user';
 import BaseCtrl from './base';
 
 export default class PageCtrl extends BaseCtrl {
-  model = Data.PageModel;
+  model = PageModel;
 
   public getAll(req, res) {
     // console.log(req);
