@@ -3,7 +3,7 @@
         fxLayoutWrap>
 
     <project-box
-      *ngFor="let project of (data | async).projects"
+      *ngFor="let project of projects"
       [data]="project"
       (change)="onChanges($event)"
       (remove)="onRemove($event)">

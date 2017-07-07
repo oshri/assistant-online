@@ -7,7 +7,7 @@ import {    ChangeDetectionStrategy,
             Inject } from '@angular/core';
 import { ProjectsService } from './../../services/projects.service';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from '@angular/material';
 import { ProjectValidators } from '../../validators/project.validator';
 
 @Component({
@@ -22,6 +22,7 @@ export class DeleteProjectDialogComponent {
     constructor(
         public projectsSrv: ProjectsService,
         public dialogRef: MdDialogRef<DeleteProjectDialogComponent>,
+        private snackbar: MdSnackBar,
         @Inject(MD_DIALOG_DATA) public data: any)
     {
         this.form = new FormGroup({
@@ -33,18 +34,20 @@ export class DeleteProjectDialogComponent {
         let val = this.form.value;
         val.creationTime = new Date();
         
-        // this.projectSrv.addProject(this.newForm.value).subscribe(
-        //     (project: iProject) => {
-        //         this.toogleModalState();
-        //         this.submiting = false;
-        //         this.router.navigate(['/projects', project._id]);
-        //     },
-        //     (error) => {
-        //         this.submiting = false;
-        //         this.toogleModalState();
-        //         this.showNotify(error, 'NEWPROJECT');
-        //     }
-        // );
+        this.projectsSrv.deleteProject(this.data._id).subscribe(
+            (res: any) => {
+                this.dialogRef.close('delete');
+            },
+            (error) => {
+                this.showNotify(error, 'DELETE');
+            }
+        );
+    }
+
+    showNotify(message: string, action: string): void {
+        this.snackbar.open(message, action, {
+            duration: 3000
+        });
     }
 
 }

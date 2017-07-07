@@ -17,7 +17,7 @@ export class ProjectBoxComponent implements OnInit{
     change: EventEmitter<any> =  new EventEmitter<any>();
 
     @Output()
-    remove: EventEmitter<boolean> = new EventEmitter<boolean>();
+    remove: EventEmitter<iProject> = new EventEmitter<iProject>();
 
     constructor(
         public dialog: MdDialog
@@ -29,12 +29,15 @@ export class ProjectBoxComponent implements OnInit{
 
     deleteProject() {
         let dialogRef = this.dialog.open(DeleteProjectDialogComponent, {
-            width: '400px',
-            height: '400px',
+            width: '520px',
+            height: 'auto',
             data: this.data
         });
-        dialogRef.afterClosed().subscribe(result => {
-        console.log('after closed', result);
+
+        dialogRef.afterClosed().subscribe((result) => {
+            if(result === 'delete'){
+                this.remove.emit(this.data);
+            }
         });
     };
 }

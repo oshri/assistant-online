@@ -15,10 +15,43 @@
             }
             
         }
+    }
+
+    .mat-dialog-content{
 
         .form-conatiner{
-            padding-bottom: 12px;
+            padding: 12px;  
+        }
+
+        button.delete-btn{
+            margin: 2px;
+            color: red;
+            box-shadow: 0 3px 1px -2px #F4433C,
+                        0 2px 2px 0 rgba(0,0,0,.14),
+                        0 1px 5px 0 rgba(0,0,0,.12);
+            opacity: 1;
+
+            &:disabled{
+                background-color: rgba(128, 128, 128, 0.09);
+                opacity: 0.4;
+            }
+        }
+
+        .form-content{
+            padding: 12px;
+        }
+
+        p{
+            line-height: 20px;
+
+            span{
+                color: #ffd740;
+                background-color: black;
+                padding: 4px;
+                border-radius: 11px;
+            }
         }
     }
+
 
 }

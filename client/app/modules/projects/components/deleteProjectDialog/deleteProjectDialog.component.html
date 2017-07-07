@@ -1,15 +1,16 @@
 <md-dialog-content class="delete-project-dialog">
     <div fxLayout="column" fxLayoutAlign="space-between none" fxLayoutWrap>
-        <div fxLayout="row" fxLayoutAlign="end center" >
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+            <h1>
+                Are you ABSOLUTELY sure?
+            </h1>
             <button class="close-btn" [md-dialog-close]="true">
                 <div class="close-animation"></div>
             </button>
         </div>
-        <h1>
-            Are you ABSOLUTELY sure?
-        </h1>
-        <p>
-            Once you delete a project, there is no going back. Please be certain.
+        <p> This will permanently delete the <span>{{data.name}}</span> project,
+            Once you delete a project, there is no going back. <br>
+            Please be certain.
         </p>
         <div class="form-container" fxLayout="column" fxLayoutWrap>
             Please type in the name of the project to confirm.
@@ -18,7 +19,7 @@
                     <input mdInput placeholder="Project Name" formControlName="name">
                 </md-input-container>
             </form>
-            <button class="save-btn" 
+            <button class="delete-btn" 
                     md-raised-button
                     type="submit"
                     (click)="onSubmit()"
