@@ -12,13 +12,14 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 
 //Modules
 import { ProjectsRouterModule } from './projects.routes';
+import { SheardComponentsModule } from './../sheardComponents/sheardComponents.module';
+
 
 // Components
 import { ProjectsComponent } from './components/projects/projects.component';
 import { NewProjectForm } from './components/newProjectForm/newProjectForm.component';
-import { ProjectBoxComponent } from './components/projectBox/projectBox.component';
 import { ProjectComponent } from './components/project/project.component'; 
-import { DeleteProjectDialogComponent } from './components/deleteProjectDialog/deleteProjectDialog.component';
+import { DocumentBoxComponent } from '../sheardComponents/components/documentBox/documentBox.component';
 
 // Services
 import { ProjectsService } from './services/projects.service';
@@ -31,9 +32,7 @@ import { Store } from './../../services/store/store';
   declarations: [
     ProjectsComponent,
     NewProjectForm,
-    ProjectBoxComponent,
-    ProjectComponent,
-    DeleteProjectDialogComponent
+    ProjectComponent
   ],
   imports: [
     CommonModule,
@@ -46,15 +45,14 @@ import { Store } from './../../services/store/store';
     MdDialogModule,
     MdIconModule,
     MdButtonModule,
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule,
+    SheardComponentsModule
   ],
   providers: [
     ProjectsService,
     ProjectsResolver
   ],
-  entryComponents: [
-    DeleteProjectDialogComponent
-  ],
+  entryComponents: [],
   bootstrap: []
 })
 

@@ -1,6 +1,6 @@
 import { FormControl, Validator } from '@angular/forms';
 
-export class ProjectValidators{
+export class DocValidators{
 
   static matchName(name: string){
     return (control: FormControl) => {

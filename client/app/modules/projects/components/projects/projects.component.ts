@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { iProject } from './../../models/project.interface';
 import { Store } from './../../../../services/store/store';
+import { ProjectsService } from './../../services/projects.service';
 
 @Component({
     selector: 'projects',
@@ -17,7 +18,8 @@ export class ProjectsComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private store: Store,
-        private snackbar: MdSnackBar
+        private snackbar: MdSnackBar,
+        private projectsSrv: ProjectsService
     ){}
 
     ngOnInit(){
@@ -31,11 +33,17 @@ export class ProjectsComponent implements OnInit {
         console.log(event);
     }
 
+    extendProject(project: iProject){
+        return Object.assign(project, {type: 'project'});
+    }
+
     onRemove(event){
-        this.projects = this.projects.filter((project: any) => {
-            return project._id !== event._id;
+        this.projectsSrv.deleteProject(event._id).subscribe((res: any) => {
+            this.projects = this.projects.filter((project: any) => {
+                return project._id !== event._id;
+            });
+            this.showNotify(`The ${event.name} success deleted.`, 'DELETE');
         });
-        this.showNotify(`The ${event.name} success deleted.`, 'DELETE');
     }
 
     showNotify(message: string, action: string): void {
