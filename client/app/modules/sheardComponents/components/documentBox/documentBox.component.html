@@ -19,6 +19,6 @@
                     (click)="deleteDocument()">
             <md-icon>delete_forever</md-icon>
         </button>
-        <a class="view-btn position-center" md-raised-button [routerLink]="['.', data._id]">VIEW</a>
+        <a class="view-btn position-center" md-raised-button (click)="goTo(data.type, data._id)">VIEW</a>
     </div>
 </div>

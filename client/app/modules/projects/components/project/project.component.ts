@@ -43,8 +43,8 @@ export class ProjectComponent implements OnInit {
             });
     }
 
-    extendProject(project: iProject){
-        return Object.assign(project, {type: 'page'});
+    extendProject(page: iPage){
+        return Object.assign(page, {type: '/page'});
     }
 
     onRemove(event){

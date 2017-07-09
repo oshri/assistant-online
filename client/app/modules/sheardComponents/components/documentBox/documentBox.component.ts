@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { DeleteDocumentDialogComponent } from '../deleteDocumentDialog/deleteDocumentDialog.component';
+import { Router } from '@angular/router';
 
 export interface iDocument{
 
@@ -22,11 +23,17 @@ export class DocumentBoxComponent implements OnInit{
     remove: EventEmitter<iDocument> = new EventEmitter<iDocument>();
 
     constructor(
-        public dialog: MdDialog
+        public dialog: MdDialog,
+        private router: Router
     ){}
 
     ngOnInit(){
 
+    }
+
+    goTo(path:string, params:string){
+        debugger
+        this.router.navigate([path, params]);
     }
 
     deleteDocument() {

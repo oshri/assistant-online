@@ -34,7 +34,7 @@ export class ProjectsComponent implements OnInit {
     }
 
     extendProject(project: iProject){
-        return Object.assign(project, {type: 'project'});
+        return Object.assign(project, {type: 'projects'});
     }
 
     onRemove(event){

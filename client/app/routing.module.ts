@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'projects',
     loadChildren: './modules/projects/projects.module#ProjectsModule'
     // canActivate: [AuthGuardLogin]
+  },{
+    path: 'page',
+    loadChildren: './modules/page/page.module#PageModule'
+    // canActivate: [AuthGuardLogin]
   }
   // { path: 'account', component: AccountComponent, canActivate: [AuthGuardLogin] },
   // { path: 'admin', component: AdminComponent, canActivate: [AuthGuardAdmin] }
