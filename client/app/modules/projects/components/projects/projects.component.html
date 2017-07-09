@@ -2,12 +2,12 @@
         fxLayout="row"
         fxLayoutWrap>
 
-    <project-box
+    <document-box
       *ngFor="let project of projects"
-      [data]="project"
+      [data]="extendProject(project)"
       (change)="onChanges($event)"
       (remove)="onRemove($event)">
-    </project-box>
+    </document-box>
 
 </div>
 <new-project-form></new-project-form>

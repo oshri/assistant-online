@@ -1,4 +1,4 @@
-<md-dialog-content class="delete-project-dialog">
+<md-dialog-content class="delete-document-dialog">
     <div fxLayout="column" fxLayoutAlign="space-between none" fxLayoutWrap>
         <div fxLayout="row" fxLayoutAlign="space-around center">
             <h1>
@@ -8,15 +8,15 @@
                 <div class="close-animation"></div>
             </button>
         </div>
-        <p> This will permanently delete the <span>{{data.name}}</span> project,
-            Once you delete a project, there is no going back. <br>
+        <p> This will permanently delete the <span>{{data.name}}</span> {{data.type}},
+            Once you delete a {{data.type}}, there is no going back. <br>
             Please be certain.
         </p>
         <div class="form-container" fxLayout="column" fxLayoutWrap>
-            Please type in the name of the project to confirm.
+            Please type in the name of the {{data.type}} to confirm.
             <form [formGroup]="form" class="form-content" (ngSubmit)="onSubmit()">
                 <md-input-container fxFlex="100%" floatPlaceholder="never" >
-                    <input mdInput placeholder="Project Name" formControlName="name">
+                    <input mdInput [placeholder]="data.type" formControlName="name">
                 </md-input-container>
             </form>
             <button class="delete-btn" 
@@ -24,7 +24,7 @@
                     type="submit"
                     (click)="onSubmit()"
                     [disabled]="form.invalid">
-                I understand the consequences, delete this project
+                I understand the consequences, delete this {{data.type}}
             </button>
         </div>
     </div>

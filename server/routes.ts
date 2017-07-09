@@ -23,7 +23,9 @@ export default function setRoutes(app) {
   // Get Pages by The id of the owning project
   app.route('/api/pages/:id').get((req, res) => pageCtrl.getAll(req, res));
   app.route('/api/pages/:id').post((req, res) => pageCtrl.insert(req, res));
-  // app.route('/api/pages/:id').get((req, res) => pageCtrl.get(req, res));
-  app.route('/api/pages/:id').put((req, res) => pageCtrl.update(req, res));
   app.route('/api/pages/:id').delete((req, res) => pageCtrl.delete(req, res));
+
+  app.route('/api/page/:id').get((req, res) => pageCtrl.get(req, res));
+  app.route('/api/page/:id').put((req, res) => pageCtrl.update(req, res));
+  app.route('/api/page/:id').delete((req, res) => pageCtrl.delete(req, res));
 }
