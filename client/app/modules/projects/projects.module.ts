@@ -20,6 +20,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { NewProjectForm } from './components/newProjectForm/newProjectForm.component';
 import { ProjectComponent } from './components/project/project.component'; 
 import { DocumentBoxComponent } from '../sheardComponents/components/documentBox/documentBox.component';
+import { NewPageForm } from './components/newPageForm/newPageForm.component';
 
 // Services
 import { ProjectsService } from './services/projects.service';
@@ -32,7 +33,8 @@ import { Store } from './../../services/store/store';
   declarations: [
     ProjectsComponent,
     NewProjectForm,
-    ProjectComponent
+    ProjectComponent,
+    NewPageForm
   ],
   imports: [
     CommonModule,
