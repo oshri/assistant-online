@@ -1,3 +1,40 @@
+$bgColor: #ffffff;
+$canvasMargin: 45px;
+$panelBorderColor: #b7b7b7;
+
 :host(page){
+    width: auto;
+    height: auto;
+    position: fixed;
+    top: 42px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: visible;
+    background-color: #f3f3f3;
     
+    .toolbar-panel{
+        background-color: $bgColor;
+        border-right: 1px solid $panelBorderColor;
+    }
+
+    .canvas-panel{
+        position: relative;
+
+        .canvas{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin-top: $canvasMargin;
+            margin-left: $canvasMargin;
+            background-color: $bgColor;
+            box-shadow: 1px 1px 10px 0px $panelBorderColor
+        }
+    }
+
+    .properties-panel{
+        position: relative;
+        background-color: $bgColor;
+        border-left: 1px solid $panelBorderColor;
+    }
 }

@@ -31,7 +31,8 @@
     <div    class="app-state"
             fxLayout="row"
             fxLayoutAlign="space-between center"
-            *ngIf="authenticated">
+            *ngIf="authenticated"
+            [@mode]="headerMode">
     
             <div class="state-name" fxFlex="30%">
                <h1>{{ stateName }}</h1>

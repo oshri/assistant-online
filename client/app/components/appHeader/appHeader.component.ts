@@ -18,6 +18,15 @@ import { Subscription } from 'rxjs/Subscription';
                 backgroundColor: '#1d1c1a'
             })),
             transition('not-authenticated <=> authenticated', animate('250ms ease-in'))
+        ]),
+        trigger('mode', [
+            state('maximize', style({
+                display: 'block'
+            })),
+            state('minimize', style({
+                display: 'none'
+            })),
+            transition('maximize <=> minimize', animate('300ms ease-out'))
         ])
     ]
 })
@@ -30,6 +39,9 @@ export class AppHeaderComponent implements OnInit,OnDestroy {
     headerTitle$ = this.store.select('appHeaderTitle');
     headerTitleSubscription: Subscription;
 
+    headerMode$ = this.store.select('appHeaderMode');
+    headerModeSubscription: Subscription;
+
     routerEvents: Subscription;
 
     @Input()
@@ -37,6 +49,8 @@ export class AppHeaderComponent implements OnInit,OnDestroy {
 
     authState: string = 'not-authenticated';
     _stateName: string = '';
+
+    headerMode: string = 'minimize';
 
 
     constructor(
@@ -48,6 +62,7 @@ export class AppHeaderComponent implements OnInit,OnDestroy {
     }
 
     ngOnInit(){
+
         this.headerSubscription = this.headerState$.subscribe((state: boolean) => {
             this.authState = this.updateHeaderState(state);            
         });
@@ -56,15 +71,17 @@ export class AppHeaderComponent implements OnInit,OnDestroy {
             this._stateName = title;
         });
 
-        // this.routerEvents = this.router.events.subscribe((state: any) => {
-        //     this._stateName = state.url;
-        // });
+        this.headerModeSubscription = this.headerMode$.subscribe((status: string) => {
+            this.headerMode = status;
+        });
+
     }
 
     ngOnDestroy(){
         this.headerSubscription.unsubscribe();
         this.headerTitleSubscription.unsubscribe();
         this.routerEvents.unsubscribe();
+        this.headerModeSubscription.unsubscribe();
     }
 
     get stateName(){

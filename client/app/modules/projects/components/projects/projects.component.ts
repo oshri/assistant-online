@@ -23,6 +23,7 @@ export class ProjectsComponent implements OnInit {
     ){}
 
     ngOnInit(){
+        this.store.set('appHeaderMode', 'maximize');
         this.store.set('appHeaderTitle', '/projects');
         this.data.subscribe((data: any) => {
           this.projects = data.projects;

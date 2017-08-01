@@ -30,6 +30,7 @@ export class ProjectComponent implements OnInit {
     }
 
     ngOnInit(){
+        this.store.set('appHeaderMode', 'maximize');
         this.route.params
             .switchMap((param: Params) => this.projectsSrv.getProject(param.id))
             .subscribe((project: iProject) => {

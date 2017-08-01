@@ -25,7 +25,7 @@ export class PageComponent implements OnInit {
         private store: Store,
         private snackbar: MdSnackBar
     ){
-
+        this.store.set('appHeaderMode', 'minimize');
     }
 
     ngOnInit(){

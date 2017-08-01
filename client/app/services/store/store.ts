@@ -8,7 +8,8 @@ import { iStore } from './iStore';
 
 const state: iStore = {
     loggedinStatus: false,
-    appHeaderTitle: ''
+    appHeaderTitle: '',
+    appHeaderMode: 'maximize'
 }
 
 @Injectable()

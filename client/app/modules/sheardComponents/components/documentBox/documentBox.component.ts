@@ -32,7 +32,6 @@ export class DocumentBoxComponent implements OnInit{
     }
 
     goTo(path:string, params:string){
-        debugger
         this.router.navigate([path, params]);
     }
 
